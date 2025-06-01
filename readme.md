@@ -40,7 +40,7 @@ Placely는 소상공인을 위한 AI 기반 매장 경영 플랫폼입니다.
 
 ## 📎 관련 링크
 
-- [📘 프로젝트 Wiki 보기](https://github.com/your-username/placely/wiki)
+- [📘 프로젝트 Wiki 보기](https://github.com/away0419/Placely/wiki)
 - [🎥 시연 영상 보기](https://youtube.com/)
 
 <br/>
