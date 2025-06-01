@@ -1,43 +1,24 @@
-# Placely – 스마트 매장 경영 & 고객 연결 플랫폼
+## 📌 "당신의 매장을 데이터로 이해하고, 고객과 연결하는 가장 스마트한 방법"
 
-Placely는 소상공인을 위한 AI 기반 매장 경영 플랫폼입니다.  
-매출 데이터를 자동으로 분석하고, 신상품 추천이나 마케팅 이벤트 제안을 통해  
-사장님이 전략적인 결정을 쉽게 내릴 수 있도록 지원합니다.  
-향후에는 고객이 매장을 탐색하고, 상품을 주문할 수 있는 B2C 기능도 제공할 예정입니다.
+**Placely**는 소규모 매장 사장님들이 매출을 기록·분석하고,  
+AI 기반 인사이트와 추천을 통해 매장 운영 전략을 세울 수 있도록 돕는 플랫폼입니다.
 
-<br/>
-
-## 📌 주요 기능
-
-- 매출/지출 기록 및 통계 시각화
-- 직원 근무 시간 기록 및 권한 구분
-- AI 기반 매출 인사이트, 신상품/이벤트 추천
-- 시간/날씨 기반 외부 데이터 분석
-- 향후 B2C 확장을 고려한 구조 설계
+또한, 향후 소비자들이 Placely 앱을 통해  
+가까운 매장 정보를 확인하고, 상품 주문까지 가능하도록 확장 예정입니다.
 
 <br/>
 
-## 🛠 기술 스택
-
-| 영역 | 스택 |
-|------|------|
-| Backend | Kotlin, Spring Boot, Spring Security, JPA |
-| Frontend | Next.js (React), TypeScript, Tailwind CSS |
-| Database | PostgreSQL |
-| Infra | Railway (Backend), Vercel (Frontend), GitHub Actions |
-| AI 연동 | OpenAI GPT-4o, Cursor AI API |
-| 외부 API | MCP (날씨/위치 데이터), 공공데이터포털 등 |
-
-<br/>
-
-
-## 📎 관련 링크
-
-- [📘 프로젝트 Wiki 보기](https://github.com/away0419/Placely/wiki)
-- [🎥 시연 영상 보기](https://youtube.com/)
+## 📖 Wiki
+📁 [Placely Wiki](https://github.com/away0419/Placely/wiki)
+<br/>├── 🏁 [프로젝트 개요](https://github.com/away0419/Placely/wiki/%F0%9F%8F%81-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)</a>
+<br/>├── 🧱 [기술 스택 및 시스템 구조](https://github.com/away0419/Placely/wiki/%F0%9F%A7%B1-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%A1%B0)
+<br/>├── 🧠 AI 추천 기능 설계
+<br/>├── 📊 데이터 모델 (ERD)
+<br/>├── 🔀 기능 흐름도 및 UX
+<br/>├── 💡 B2C 확장 기획안 (선택)
+<br/>├── 📌 기술 회고 및 이슈 트래킹
 
 <br/>
 
-## 📬 연락
-
-> ✉️ away0419@naver.com  
+## 📬 연락처
+✉️ away0419@naver.com
