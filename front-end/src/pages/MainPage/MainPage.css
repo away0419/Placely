@@ -1,0 +1,83 @@
+/* .main-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.main-page-container h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+
+.main-page-container p {
+  font-size: 1.2rem;
+  color: #4a5568;
+  margin-bottom: 2rem;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.main-nav-btn {
+  padding: 0.8rem 1.5rem;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.main-nav-btn:hover {
+  background: #1e40af;
+} */
+
+/* 메인화면 스타일 (한글 주석) */
+
+/* 메인페이지 전체 레이아웃 */
+.main-page-root {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 대시보드 카드 영역 */
+.dashboard-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 공통 카드 스타일 */
+.dashboard-card {
+  background: #fff;
+  color: var(--color-text);
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-width: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dashboard-card {
+    background: #23272f;
+    color: var(--color-text);
+  }
+}

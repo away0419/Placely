@@ -1,0 +1,34 @@
+/* 기본은 라이트 컬러를 import */
+@import "./lightColors.css";
+
+/* prefers-color-scheme이 dark일 때 다크 컬러를 import */
+@media (prefers-color-scheme: dark) {
+  @import "./darkColors.css";
+}
+
+/* 전체 배경 및 텍스트 색상 적용 예시 */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* 주요 버튼 스타일 예시 */
+.button-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.button-secondary {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.button-accent {
+  background: var(--color-accent);
+  color: #212529;
+}
+
+/* 에러 텍스트 스타일 */
+.text-error {
+  color: var(--color-error);
+}

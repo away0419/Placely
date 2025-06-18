@@ -1,0 +1,38 @@
+/* 상단바 전체 */
+.main-header {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.main-header__logo {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.main-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-header__icon-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.3em 0.5em;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.main-header__icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}

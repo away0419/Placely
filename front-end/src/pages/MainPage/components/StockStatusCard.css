@@ -1,0 +1,22 @@
+/* 현재 재고 카드 */
+.stock-status-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+.stock-status-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.stock-status-name {
+  font-size: 1.1rem;
+  margin-right: 0.7em;
+}
+.stock-status-qty {
+  color: var(--color-accent);
+  font-weight: 500;
+}

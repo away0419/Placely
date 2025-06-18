@@ -1,0 +1,12 @@
+:root {
+  /* 라이트 모드 메인 컬러 */
+  --color-primary: #2d6a4f; /* 딥 그린 */
+  --color-secondary: #40916c; /* 밝은 그린 */
+  --color-accent: #ffb703; /* 옐로우 포인트 */
+  --color-error: #e63946; /* 레드 */
+
+  /* 라이트 배경 및 텍스트 */
+  --color-bg: #f8f9fa; /* 밝은 배경 */
+  --color-text: #212529; /* 기본 텍스트 */
+  --color-text-secondary: #495057; /* 보조 텍스트 */
+}

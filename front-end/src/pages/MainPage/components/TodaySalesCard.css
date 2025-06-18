@@ -1,0 +1,20 @@
+/* 오늘의 매출 카드 */
+.today-sales-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+.today-sales-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.today-sales-label {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+.today-sales-value {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-secondary);
+}

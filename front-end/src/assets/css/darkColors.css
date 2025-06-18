@@ -1,0 +1,12 @@
+:root {
+  /* 다크 모드 메인 컬러 */
+  --color-primary: #1b4332; /* 더 딥한 그린 */
+  --color-secondary: #2d6a4f; /* 다크 그린 */
+  --color-accent: #ffd166; /* 다크 옐로우 */
+  --color-error: #ff6b6b; /* 다크 레드 */
+
+  /* 다크 배경 및 텍스트 */
+  --color-bg: #242424; /* 다크 배경 */
+  --color-text: #f8f9fa; /* 밝은 텍스트 */
+  --color-text-secondary: #bdbdbd; /* 보조 텍스트 */
+}

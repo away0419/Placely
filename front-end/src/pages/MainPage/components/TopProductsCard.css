@@ -1,0 +1,27 @@
+/* 팔린 상품 순위 카드 */
+.top-products-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+.top-products-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.top-products-rank {
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-right: 0.7em;
+}
+.top-products-name {
+  font-size: 1.1rem;
+  margin-right: 0.7em;
+}
+.top-products-sold {
+  color: var(--color-secondary);
+  font-weight: 500;
+}
