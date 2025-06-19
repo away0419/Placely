@@ -1,5 +1,5 @@
 /* 메인페이지 전체 레이아웃 */
-.main-page-root {
+.mainPageRoot {
   min-height: 100vh;
   background: var(--color-bg);
   display: flex;
@@ -7,7 +7,7 @@
 }
 
 /* 대시보드 카드 영역 */
-.dashboard-main {
+.dashboardMain {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
@@ -18,7 +18,7 @@
 }
 
 /* 공통 카드 스타일 */
-.dashboard-card {
+.dashboardCard {
   background: #fff;
   color: var(--color-text);
   border-radius: 1.2rem;
@@ -31,7 +31,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .dashboard-card {
+  .dashboardCard {
     background: #23272f;
     color: var(--color-text);
   }

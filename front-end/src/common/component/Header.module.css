@@ -1,0 +1,117 @@
+/* 상단바 전체 */
+.mainHeader {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.mainHeaderLogo {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.mainHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mainHeaderIconBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.3em 0.5em;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.mainHeaderIconBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.serviceMenu {
+  display: flex;
+  gap: 2rem;
+}
+.menuBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.menuBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* 태블릿 이하: 메뉴 숨김, 햄버거 버튼 노출 */
+@media (max-width: 900px) {
+  .serviceMenu {
+    display: none;
+  }
+}
+
+/* 드로어(오른쪽 슬라이드 메뉴) */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+}
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  box-shadow: -2px 0 16px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  animation: slideIn 0.2s;
+}
+@keyframes slideIn {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 0;
+  }
+}
+.closeBtn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #222;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+.drawerMenuBtn {
+  background: none;
+  border: none;
+  color: #222;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.7em 0;
+  text-align: left;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.drawerMenuBtn:hover {
+  background: #f0f4fa;
+}
