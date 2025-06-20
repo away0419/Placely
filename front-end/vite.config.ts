@@ -5,8 +5,20 @@ import path from "path";
 
 // 환경별로 .env 파일을 자동으로 로드하도록 설정 (한글 주석)
 export default defineConfig(({ mode }) => {
-  // .env, .env.local, .env.dev, .env.prod 등 환경별 변수 자동 로드
-  const env = loadEnv(mode, process.cwd(), "");
+  // .env.common 파일을 먼저 로드하고, 그 다음에 mode별 환경변수를 로드하여 병합
+  const commonEnv = loadEnv("common", process.cwd(), "");
+  const modeEnv = loadEnv(mode, process.cwd(), "");
+
+  // common과 mode 환경변수를 병합 (mode가 우선순위가 높음)
+  const env = { ...commonEnv, ...modeEnv };
+
+  console.log("=== 환경변수 디버깅 ===");
+  console.log("Mode:", mode);
+  console.log("Common Env:", commonEnv);
+  console.log("Mode Env:", modeEnv);
+  console.log("Merged Env:", env);
+  console.log("VITE_TEST_KEY:", env.VITE_TEST_KEY);
+  console.log("=========================");
 
   return {
     plugins: [
@@ -42,8 +54,12 @@ export default defineConfig(({ mode }) => {
       port: env.VITE_PORT ? Number(env.VITE_PORT) : 5173, // 환경별 포트 지정
     },
     define: {
-      "process.env": env, // 환경변수 전체 주입
+      // Vite 표준: import.meta.env를 통해 브라우저에서 접근할 수 있도록 환경변수 주입
+      "import.meta.env.VITE_API_URL": JSON.stringify(env.VITE_API_URL),
+      "import.meta.env.VITE_PORT": JSON.stringify(env.VITE_PORT),
+      "import.meta.env.VITE_TEST_KEY": JSON.stringify(env.VITE_TEST_KEY),
     },
   };
 });
-// 환경별 .env 파일을 통해 local, dev, prod 세팅을 분리할 수 있음
+// .env.common 파일이 모든 모드에서 기본으로 로드되고,
+// mode별 환경변수가 그 위에 덮어씌워짐
