@@ -1,2 +1,5 @@
 @import "./assets/css/fonts.css"; /* 폰트 변수 가져오기 */
 @import "./assets/css/defaultColor.css"; /* 기본 컬러 변수 가져오기 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

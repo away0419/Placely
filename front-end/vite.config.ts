@@ -12,13 +12,10 @@ export default defineConfig(({ mode }) => {
   // common과 mode 환경변수를 병합 (mode가 우선순위가 높음)
   const env = { ...commonEnv, ...modeEnv };
 
-  console.log("=== 환경변수 디버깅 ===");
+  console.log("====== 실행 환경 ======");
+  // console.log("Merged Env:", env);
   console.log("Mode:", mode);
-  console.log("Common Env:", commonEnv);
-  console.log("Mode Env:", modeEnv);
-  console.log("Merged Env:", env);
-  console.log("VITE_TEST_KEY:", env.VITE_TEST_KEY);
-  console.log("=========================");
+  console.log("=======================");
 
   return {
     plugins: [
