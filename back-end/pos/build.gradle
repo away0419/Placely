@@ -1,0 +1,5 @@
+// POS 모듈 - 매장 운영 핵심 비즈니스 로직
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+} 

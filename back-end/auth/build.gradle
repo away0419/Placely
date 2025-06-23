@@ -1,0 +1,5 @@
+// Auth 모듈 - 인증/인가 담당
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+} 
