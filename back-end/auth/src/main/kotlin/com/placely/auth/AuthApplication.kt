@@ -3,7 +3,10 @@ package com.placely.auth
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication
+/**
+ * Auth 서비스 메인 애플리케이션
+ */
+@SpringBootApplication(scanBasePackages = ["com.placely.auth", "com.placely.common"])
 class AuthApplication
 
 fun main(args: Array<String>) {

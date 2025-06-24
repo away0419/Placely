@@ -1,0 +1,103 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /auth
+
+spring:
+  application:
+    name: placely-auth-service
+
+  # 데이터베이스 설정 (Oracle Cloud)
+  datasource:
+    url: ${datasource.url}
+    username: ${datasource.usr}
+    password: ${datasource.pwd}
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: validate # 엔티티와 테이블 일치 여부 확인 용도
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+        use_sql_comments: true
+    open-in-view: false
+
+  # Redis 설정 (토큰 캐싱용)
+  data:
+    redis:
+      sentinel:
+        master: mymaster
+        nodes:
+          - ${redis.host1}
+          - ${redis.host2}
+
+# JWT 설정
+jwt:
+  secret: ${JWT_SECRET:placely-super-secret-key-for-jwt-token-generation-change-this-in-production}
+  access-token-expiration: 1800000 # 30분 (밀리초)
+  refresh-token-expiration: 604800000 # 7일 (밀리초)
+  issuer: placely-auth-service
+
+# 암호화 설정
+crypto:
+  personal-info-key: ${CRYPTO_KEY:your-base64-encoded-aes-key-here}
+
+# 로깅 설정
+logging:
+  level:
+    com.placely.auth: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/auth-service.log
+
+# 액추에이터 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+
+# 개발 환경 설정
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  level:
+    root: INFO
+    com.placely.auth: DEBUG
+
+# 운영 환경 설정
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    root: WARN
+    com.placely.auth: INFO
