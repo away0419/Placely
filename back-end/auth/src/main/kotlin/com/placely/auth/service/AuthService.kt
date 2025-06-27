@@ -6,8 +6,8 @@ import com.placely.auth.exception.AuthException
 import com.placely.auth.repository.AuthTokenRepository
 import com.placely.auth.repository.AuthUserRepository
 import com.placely.common.config.JwtProperties
-import com.placely.common.security.JwtTokenProvider
-import com.placely.common.security.PasswordEncoder
+import com.placely.common.security.jwt.JwtTokenUtil
+import com.placely.common.security.jwt.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.security.MessageDigest
@@ -22,7 +22,7 @@ import java.util.*
 class AuthService(
     private val userRepository: AuthUserRepository,
     private val tokenRepository: AuthTokenRepository,
-    private val jwtTokenProvider: JwtTokenProvider,
+    private val jwtTokenProvider: JwtTokenUtil,
     private val passwordEncoder: PasswordEncoder,
     private val jwtProperties: JwtProperties
 ) {

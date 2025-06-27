@@ -7,6 +7,12 @@ spring:
   application:
     name: placely-auth-service
 
+  # common 모듈 설정 포함
+  profiles:
+    include:
+      - common
+      - env # gitignore 처리
+
   # 데이터베이스 설정 (Oracle Cloud)
   datasource:
     url: ${datasource.url}
@@ -38,19 +44,8 @@ spring:
       sentinel:
         master: mymaster
         nodes:
-          - ${redis.host1}
-          - ${redis.host2}
-
-# JWT 설정
-jwt:
-  secret: ${JWT_SECRET:placely-super-secret-key-for-jwt-token-generation-change-this-in-production}
-  access-token-expiration: 1800000 # 30분 (밀리초)
-  refresh-token-expiration: 604800000 # 7일 (밀리초)
-  issuer: placely-auth-service
-
-# 암호화 설정
-crypto:
-  personal-info-key: ${CRYPTO_KEY:your-base64-encoded-aes-key-here}
+          - ${oracle.cloud.server1}
+          - ${oracle.cloud.server2}
 
 # 로깅 설정
 logging:

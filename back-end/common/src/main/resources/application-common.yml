@@ -1,0 +1,13 @@
+# Common 모듈 설정 (개발용)
+placely:
+  security:
+    crypto:
+      encryption-key: UGxhY2VseVNlY3JldEtleTIwMjRGb3JEZXZlbG9wbWVudA== # 암호화 키 (32바이트 Base64 인코딩) - 개발용
+      personal-salt: PlacelyPersonalSalt2025Dev # 개인정보 해싱용 Salt - 개발용
+
+# JWT 토큰 설정 (개발용)
+jwt:
+  secret: placely-jwt-secret-key-for-development-2025-change-in-production
+  access-token-expiration: 1800000 # 30분 (밀리초)
+  refresh-token-expiration: 604800000 # 7일 (밀리초)
+  issuer: placely-auth-service

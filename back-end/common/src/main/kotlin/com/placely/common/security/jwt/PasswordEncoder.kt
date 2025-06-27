@@ -1,4 +1,4 @@
-package com.placely.common.security
+package com.placely.common.security.jwt
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
