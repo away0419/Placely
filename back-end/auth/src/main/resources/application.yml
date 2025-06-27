@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: placely-auth-service
+    name: auth-service
 
   # common 모듈 설정 포함
   profiles:
@@ -13,24 +13,24 @@ spring:
       - common
       - env # gitignore 처리
 
-  # 데이터베이스 설정 (Oracle Cloud)
+  # 데이터베이스 설정
   datasource:
-    url: ${datasource.url}
-    username: ${datasource.usr}
-    password: ${datasource.pwd}
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: placely
+    password: placely123
     driver-class-name: oracle.jdbc.OracleDriver
     hikari:
-      maximum-pool-size: 20
+      maximum-pool-size: 10
       minimum-idle: 5
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
+      connection-timeout: 20000
+      idle-timeout: 300000
+      max-lifetime: 1200000
 
   # JPA 설정
   jpa:
     hibernate:
-      ddl-auto: validate # 엔티티와 테이블 일치 여부 확인 용도
-    show-sql: false
+      ddl-auto: none # 운영에서는 none, 개발시에는 validate
+    show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
@@ -38,14 +38,25 @@ spring:
         use_sql_comments: true
     open-in-view: false
 
-  # Redis 설정 (토큰 캐싱용)
+  # Redis 설정 (토큰 관리용)
   data:
     redis:
-      sentinel:
-        master: mymaster
-        nodes:
-          - ${oracle.cloud.server1}
-          - ${oracle.cloud.server2}
+      host: localhost
+      port: 6379
+      password:
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+# JWT 설정
+jwt:
+  secret: "placely-auth-service-jwt-secret-key-for-production-use-longer-key"
+  access-token-expiration: 1800000 # 30분 (밀리초)
+  refresh-token-expiration: 604800000 # 7일 (밀리초)
+  issuer: "placely-auth-service"
 
 # 로깅 설정
 logging:
@@ -54,18 +65,18 @@ logging:
     org.springframework.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   file:
-    name: logs/auth-service.log
+    name: ../logs/auth-service.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
-# 액추에이터 설정
+# Actuator 설정 (헬스체크용)
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus
+        include: health,info,metrics
   endpoint:
     health:
       show-details: when-authorized

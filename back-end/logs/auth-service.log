@@ -1,0 +1,69 @@
+2025-06-27 17:20:54 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Starting AuthApplicationKt using Java 17.0.11 with PID 5144 (D:\github\Placely\Placely\back-end\auth\build\classes\kotlin\main started by jun_kyung in D:\github\Placely\Placely\back-end)
+2025-06-27 17:20:54 [restartedMain] DEBUG com.placely.auth.AuthApplicationKt - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-06-27 17:20:54 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - The following 2 profiles are active: "common", "env"
+2025-06-27 17:20:54 [restartedMain] INFO  o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\jun_kyung\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\23.3.0.23.09\405bcbc8d8dab59f562125fa1d2b7e06d21649f3\ojdbc11-23.3.0.23.09.jar referenced one or more files that do not exist: file:/C:/Users/jun_kyung/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.3.0.23.09/405bcbc8d8dab59f562125fa1d2b7e06d21649f3/oraclepki.jar
+2025-06-27 17:20:54 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-27 17:20:54 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-27 17:20:56 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalStateException: com.placely.common.config.JwtProperties declares @ConstructorBinding on a no-args constructor
+2025-06-27 17:20:56 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-27 17:20:56 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: com.placely.common.config.JwtProperties declares @ConstructorBinding on a no-args constructor
+	at org.springframework.util.Assert.state(Assert.java:101)
+	at org.springframework.boot.context.properties.bind.DefaultBindConstructorProvider$Constructors.getConstructorBindingAnnotated(DefaultBindConstructorProvider.java:168)
+	at org.springframework.boot.context.properties.bind.DefaultBindConstructorProvider$Constructors.getConstructors(DefaultBindConstructorProvider.java:107)
+	at org.springframework.boot.context.properties.bind.DefaultBindConstructorProvider.getBindConstructor(DefaultBindConstructorProvider.java:55)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBean.deduceBindMethod(ConfigurationPropertiesBean.java:288)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBeanRegistrar.createBeanDefinition(ConfigurationPropertiesBeanRegistrar.java:94)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBeanRegistrar.registerBeanDefinition(ConfigurationPropertiesBeanRegistrar.java:88)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBeanRegistrar.register(ConfigurationPropertiesBeanRegistrar.java:70)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBeanRegistrar.register(ConfigurationPropertiesBeanRegistrar.java:64)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.registerBeanDefinitions(EnableConfigurationPropertiesRegistrar.java:49)
+	at org.springframework.context.annotation.ImportBeanDefinitionRegistrar.registerBeanDefinitions(ImportBeanDefinitionRegistrar.java:86)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:398)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:397)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:151)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:123)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:430)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.placely.auth.AuthApplicationKt.main(AuthApplication.kt:15)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2025-06-27 17:24:34 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Starting AuthApplicationKt using Java 17.0.11 with PID 1464 (D:\github\Placely\Placely\back-end\auth\build\classes\kotlin\main started by jun_kyung in D:\github\Placely\Placely\back-end)
+2025-06-27 17:24:34 [restartedMain] DEBUG com.placely.auth.AuthApplicationKt - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-06-27 17:24:34 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - The following 2 profiles are active: "common", "env"
+2025-06-27 17:24:34 [restartedMain] INFO  o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\jun_kyung\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\23.3.0.23.09\405bcbc8d8dab59f562125fa1d2b7e06d21649f3\ojdbc11-23.3.0.23.09.jar referenced one or more files that do not exist: file:/C:/Users/jun_kyung/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.3.0.23.09/405bcbc8d8dab59f562125fa1d2b7e06d21649f3/oraclepki.jar
+2025-06-27 17:24:34 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-27 17:24:34 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-27 17:24:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-27 17:24:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-27 17:24:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 JPA repository interfaces.
+2025-06-27 17:24:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-27 17:24:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-27 17:24:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2025-06-27 17:24:36 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-27 17:24:36 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-27 17:24:36 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-06-27 17:24:36 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring embedded WebApplicationContext
+2025-06-27 17:24:36 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2538 ms
+2025-06-27 17:24:37 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-27 17:24:37 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-06-27 17:24:37 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-27 17:24:37 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-27 17:24:37 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...

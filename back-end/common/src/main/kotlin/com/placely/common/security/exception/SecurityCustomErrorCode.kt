@@ -1,30 +1,21 @@
 package com.placely.common.security.exception
 
-enum class SecurityCustomErrorCode (
-    val httpStatusCode: Int,
+/**
+ * 보안 관련 커스텀 에러 코드
+ */
+enum class SecurityCustomErrorCode(
     val code: String,
-    val msg: String
+    val message: String
 ) {
-    /* security */
-    SECURITY_PRINCIPAL_IS_NULL(500, "S008", "Security Principal is null"),
-
-    /* jwt */
-    JWT_TOKEN_TYPE_MISMATCH(401, "J001", "JWT Token Type Mismatch"),
-    JWT_COOKIE_IS_NOT_FOUND(401, "J002", "JWT Cookie is not found"),
-    JWT_AUTH_HEADER_IS_NOT_FOUND(401, "J003", "JWT Auth Header is not found"),
-    JWT_TOKEN_EXPIRED(401, "J004", "JWT Token Expired"),
-    JWT_TOKEN_IS_NULL(401, "J005", "JWT Token is null"),
-    JWT_TAMPERED_INVALID(401, "J006", "JWT Token Tampered or Invalid"),
-    JWT_TOKEN_MALFORMED(401, "J007", "JWT Token Malformed"),
-    JWT_TOKEN_ILLEGAL_ARGUMENT(401, "J008", "JWT Token illegal argument"),
-    JWT_TOKEN_ACCESS_DENIED(403, "J009", "JWT Token access denied"),
-
-    /* oauth2 */
-    OAUTH2_SERVICE_IS_NOT_FOUND(500, "O001", "OAuth2 Service is not found"),
-    OAUTH2_CONTENT_IS_NOT_FOUND(500, "O002", "OAuth2 Content is not found"),
-    OAUTH2_CONTENT_TYPE_MISMATCH(500, "O003", "OAuth2 Content Type Mismatch"),
-    OAUTH2_USER_INFO_IS_NULL(500, "O004", "OAuth2 User Info is null"),
-    OAUTH2_USER_INFO_KEY_IS_NULL(500, "O005", "OAuth2 User Info Key is null"),
-    OAUTH2_USER_INFO_EMAIL_IS_NULL(500, "O006", "OAuth2 User Info Email is null"),
-    OAUTH2_USER_INFO_NAME_IS_NULL(500, "O007", "OAuth2 User Info Name is null"),
+    JWT_TOKEN_TYPE_MISMATCH("JWT_001", "토큰 타입이 일치하지 않습니다"),
+    JWT_TOKEN_MALFORMED("JWT_002", "잘못된 형식의 토큰입니다"),
+    JWT_TOKEN_EXPIRED("JWT_003", "만료된 토큰입니다"),
+    JWT_TAMPERED_INVALID("JWT_004", "변조되었거나 유효하지 않은 토큰입니다"),
+    JWT_TOKEN_ILLEGAL_ARGUMENT("JWT_005", "토큰 인자가 올바르지 않습니다"),
+    JWT_TOKEN_IS_NULL("JWT_006", "토큰이 null입니다"),
+    JWT_TOKEN_NOT_FOUND("JWT_007", "토큰을 찾을 수 없습니다"),
+    ACCESS_DENIED("AUTH_001", "접근이 거부되었습니다"),
+    AUTHENTICATION_FAILED("AUTH_002", "인증에 실패했습니다"),
+    INVALID_CREDENTIALS("AUTH_003", "잘못된 사용자 정보입니다"),
+    USER_NOT_FOUND("AUTH_004", "사용자를 찾을 수 없습니다")
 }
