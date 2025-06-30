@@ -15,10 +15,10 @@ spring:
 
   # 데이터베이스 설정
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: placely
-    password: placely123
     driver-class-name: oracle.jdbc.OracleDriver
+    url: ${datasource.url}
+    username: ${datasource.usr}
+    password: ${datasource.pwd}
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
@@ -41,22 +41,11 @@ spring:
   # Redis 설정 (토큰 관리용)
   data:
     redis:
-      host: localhost
-      port: 6379
-      password:
-      timeout: 2000ms
-      lettuce:
-        pool:
-          max-active: 8
-          max-idle: 8
-          min-idle: 0
-
-# JWT 설정
-jwt:
-  secret: "placely-auth-service-jwt-secret-key-for-production-use-longer-key"
-  access-token-expiration: 1800000 # 30분 (밀리초)
-  refresh-token-expiration: 604800000 # 7일 (밀리초)
-  issuer: "placely-auth-service"
+      sentinel:
+        master: mymaster
+        nodes:
+          - ${oracle.cloud.server1}
+          - ${oracle.cloud.server2}
 
 # 로깅 설정
 logging:
