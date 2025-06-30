@@ -4,7 +4,7 @@ package com.placely.common.security.exception
  * 보안 관련 커스텀 예외
  */
 class SecurityCustomException(
-    val errorCode: SecurityCustomErrorCode,
+    private val errorCode: SecurityCustomErrorCode,
     message: String? = null
 ) : RuntimeException(message ?: errorCode.message) {
 

@@ -1,24 +1,20 @@
 // Common 모듈 - 공통 유틸리티 및 보안 기능
 dependencies {
-    // JWT 라이브러리
+    // JWT 라이브러리 - JWT 토큰 생성/검증에 필요
     implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
     implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
     implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
     
-    // 암호화 라이브러리
-    implementation 'org.springframework.security:spring-security-crypto'
-    implementation 'org.bouncycastle:bcpkix-jdk18on:1.76'
-    
-    // 유틸리티
+    // Spring Boot 기본 - Component 스캔 및 기본 기능에 필요
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     
-    // 설정
+    // JPA API만 - CryptoEntityListener에서 @PrePersist, @PostLoad 등 사용
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    
+    // Kotlin 리플렉션 - CryptoEntityListener에서 필드 접근에 필요
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    
+    // 설정 프로세서 - Properties 클래스 자동 완성에 필요
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-
-    // 로그
-    implementation("io.github.oshai:kotlin-logging-jvm:7.0.7")
-    implementation("org.slf4j:slf4j-api:2.0.9") // 또는 1.x 버전
 } 

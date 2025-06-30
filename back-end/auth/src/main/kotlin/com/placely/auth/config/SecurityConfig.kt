@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 /**
@@ -17,21 +15,13 @@ import org.springframework.security.web.SecurityFilterChain
 class SecurityConfig {
 
     /**
-     * 패스워드 인코더 빈 등록
-     */
-    @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
-    }
-
-    /**
      * 보안 필터 체인 설정
      */
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
             .csrf { it.disable() } // REST API이므로 CSRF 비활성화
-            .sessionManagement { 
+            .sessionManagement {
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // JWT 사용으로 세션 비활성화
             }
             .authorizeHttpRequests { auth ->

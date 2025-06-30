@@ -3,24 +3,22 @@ dependencies {
 	// 공통 모듈
 	implementation project(':common')
 	
-	// Spring Boot
+	// Spring Boot 핵심
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	
-	// Oracle DB
+	// 데이터베이스
 	implementation 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
 	implementation 'com.oracle.database.jdbc:ucp:23.3.0.23.09'
 	
 	// Redis (토큰 관리용)
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	
-	// 유틸리티
-	implementation 'org.apache.commons:commons-lang3'
-	
-	// 테스트용 H2 데이터베이스
-	testImplementation 'com.h2database:h2'
+	// 테스트 의존성
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-} 
+	testImplementation 'com.h2database:h2'
+}

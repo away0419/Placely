@@ -38,14 +38,14 @@ spring:
         use_sql_comments: true
     open-in-view: false
 
-  # Redis 설정 (토큰 관리용)
+  # Redis 설정 (토큰 관리용) - 올바른 경로로 수정
   data:
     redis:
       sentinel:
         master: mymaster
         nodes:
-          - ${oracle.cloud.server1}
-          - ${oracle.cloud.server2}
+          - ${oracle.cloud.server1} # 이미 포트 포함됨
+          - ${oracle.cloud.server2} # 이미 포트 포함됨
 
 # 로깅 설정
 logging:
@@ -70,19 +70,26 @@ management:
     health:
       show-details: when-authorized
 
-# 개발 환경 설정
+# 개발 환경 설정 - Redis 비활성화 (안전한 개발을 위해)
 ---
 spring:
   config:
     activate:
       on-profile: dev
 
+  # 개발환경에서는 Redis 자동설정 비활성화
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.actuate.autoconfigure.data.redis.RedisReactiveHealthContributorAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisReactiveAutoConfiguration
+
 logging:
   level:
     root: INFO
     com.placely.auth: DEBUG
 
-# 운영 환경 설정
+# 운영 환경 설정 - Redis 활성화
 ---
 spring:
   config:
