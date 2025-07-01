@@ -17,5 +17,5 @@ enum class SecurityCustomErrorCode(
     ACCESS_DENIED("AUTH_001", "접근이 거부되었습니다"),
     AUTHENTICATION_FAILED("AUTH_002", "인증에 실패했습니다"),
     INVALID_CREDENTIALS("AUTH_003", "잘못된 사용자 정보입니다"),
-    USER_NOT_FOUND("AUTH_004", "사용자를 찾을 수 없습니다")
+    USER_NOT_FOUND("AUTH_004", "사용자를 찾을 수 없습니다"),
 }

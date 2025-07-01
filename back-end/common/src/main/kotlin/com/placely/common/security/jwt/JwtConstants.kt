@@ -8,5 +8,6 @@ object JwtConstants {
     const val AUTHORIZATION_HEADER = "Authorization"
     const val TOKEN_PREFIX = "Bearer "
     const val COOKIE_HEADER = "Set-Cookie"
-    const val REFRESH_TOKEN_PREFIX = "refresh_token"
+    const val REFRESH = "REFRESH"
+    const val ACCESS = "ACCESS"
 }

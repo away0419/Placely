@@ -19,6 +19,8 @@ class JwtTokenUtil(
 
     private val key: Key = Keys.hmacShaKeyFor(jwtProperties.secret.toByteArray())
 
+    // =========================== token 추출 관련 start ===========================
+
     /**
      * 헤더에서 token 추출
      * @param header String
@@ -88,6 +90,9 @@ class JwtTokenUtil(
         return claims["type"] as? String
     }
 
+    // =========================== token 추출 관련 end ===========================
+    // =========================== token 검증 관련 start ===========================
+
     /**
      * 토큰 유효성 검증
      * @param token String
@@ -118,16 +123,35 @@ class JwtTokenUtil(
     }
 
     /**
+     * Access 토큰 유효 시간 (초)
+     * @return Long
+     */
+    fun getAccessTokenExpirationSeconds(): Long {
+        return jwtProperties.accessTokenExpiration / 1000
+    }
+
+    /**
+     * Refresh 토큰 유효 시간 (초)
+     * @return Long
+     */
+    fun getRefreshTokenExpirationSeconds(): Long {
+        return jwtProperties.refreshTokenExpiration / 1000
+    }
+
+    // =========================== token 검증 관련 end ===========================
+    // =========================== token 생성 관련 start ===========================
+
+    /**
      * Access 토큰 생성
      * @param userId String 사용자 ID
      * @return String JWT 토큰
      */
     fun generateAccessToken(userId: String): String {
         val claims = mapOf(
-            "type" to "ACCESS",
+            "type" to JwtConstants.ACCESS,
             "iss" to jwtProperties.issuer
         )
-        
+
         return generateToken(userId, claims, jwtProperties.accessTokenExpiration)
     }
 
@@ -138,10 +162,10 @@ class JwtTokenUtil(
      */
     fun generateRefreshToken(userId: String): String {
         val claims = mapOf(
-            "type" to "REFRESH",
+            "type" to JwtConstants.REFRESH,
             "iss" to jwtProperties.issuer
         )
-        
+
         return generateToken(userId, claims, jwtProperties.refreshTokenExpiration)
     }
 
@@ -157,28 +181,12 @@ class JwtTokenUtil(
         val expiryDate = Date(now.time + expiration)
 
         return Jwts.builder()
-            .setClaims(extraClaims)
-            .setSubject(subject)
-            .setIssuedAt(now)
-            .setExpiration(expiryDate)
-            .signWith(key, SignatureAlgorithm.HS512)
+            .claims(extraClaims)
+            .subject(subject)
+            .issuedAt(now)
+            .expiration(expiryDate)
+            .signWith(key)
             .compact()
-    }
-
-    /**
-     * Access 토큰 만료 시간 (초)
-     * @return Long
-     */
-    fun getAccessTokenExpirationSeconds(): Long {
-        return jwtProperties.accessTokenExpiration / 1000
-    }
-
-    /**
-     * Refresh 토큰 만료 시간 (초)
-     * @return Long
-     */
-    fun getRefreshTokenExpirationSeconds(): Long {
-        return jwtProperties.refreshTokenExpiration / 1000
     }
 
 } 

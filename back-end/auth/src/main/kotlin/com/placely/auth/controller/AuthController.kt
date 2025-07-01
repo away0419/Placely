@@ -1,21 +1,23 @@
-//package com.placely.auth.controller
-//
-//import com.placely.auth.dto.LoginRequest
-//import com.placely.auth.dto.LoginResponse
-//import com.placely.auth.service.AuthService
-//import jakarta.validation.Valid
-//import org.springframework.http.ResponseEntity
-//import org.springframework.web.bind.annotation.*
-//
-///**
-// * 인증 관련 API 컨트롤러
-// */
-//@RestController
-//@RequestMapping("/api/auth")
-//class AuthController(
+package com.placely.auth.controller
+
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
+import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+/**
+ * 인증 관련 API 컨트롤러
+ */
+@RestController
+@Tag(name = "인증/인가 API", description = "사용자 인증, 인가 관련 기능을 제공하는 API")
+class AuthController(
 //    private val authService: AuthService
-//) {
-//
+) {
+
 //    /**
 //     * 로그인 API
 //     */
@@ -74,15 +76,22 @@
 //            ))
 //        }
 //    }
-//
-//    /**
-//     * 헬스체크 API
-//     */
-//    @GetMapping("/health")
-//    fun health(): ResponseEntity<Map<String, String>> {
-//        return ResponseEntity.ok(mapOf(
-//            "status" to "UP",
-//            "service" to "auth-service"
-//        ))
-//    }
-//}
+
+    /**
+     * 헬스체크 API
+     */
+    @Operation(
+        summary = "서비스 상태 확인",
+        description = "Auth 서비스의 현재 상태를 확인합니다."
+    )
+    @GetMapping("/health")
+    fun health(): ResponseEntity<Map<String, String>> {
+        return ResponseEntity.ok(
+            mapOf(
+                "status" to "UP",
+                "service" to "auth-service",
+                "timestamp" to java.time.LocalDateTime.now().toString()
+            )
+        )
+    }
+}

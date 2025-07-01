@@ -17,6 +17,9 @@ dependencies {
 	// Redis (토큰 관리용)
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	
+	// API 문서화 - springdoc-openapi
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+	
 	// 테스트 의존성
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

@@ -5,15 +5,13 @@
 //import com.placely.auth.dto.UserInfo
 //import com.placely.auth.entity.Token
 //import com.placely.auth.entity.TokenType
-//import com.placely.auth.entity.User
 //import com.placely.auth.repository.TokenRepository
 //import com.placely.auth.repository.UserRepository
+//import com.placely.auth.util.RefreshCookieUtil
 //import com.placely.common.security.jwt.JwtTokenUtil
-//import org.springframework.security.crypto.password.PasswordEncoder
 //import org.springframework.stereotype.Service
 //import org.springframework.transaction.annotation.Transactional
 //import java.time.LocalDateTime
-//import java.time.ZoneId
 //
 ///**
 // * 인증 서비스
@@ -23,7 +21,8 @@
 //class AuthService(
 //    private val userRepository: UserRepository,
 //    private val tokenRepository: TokenRepository,
-//    private val jwtTokenUtil: JwtTokenUtil
+//    private val jwtTokenUtil: JwtTokenUtil,
+//    private val refreshCookieUtil: RefreshCookieUtil,
 //) {
 //
 //    /**

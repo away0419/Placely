@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding
 /**
  * 암호화 관련 설정 Properties
  * application.yml의 placely.security.crypto 설정을 바인딩
+ * @ConstructorBinding 사용 시 default 값 설정 불가능.
  */
 @ConfigurationProperties(prefix = "placely.security.crypto")
 data class CryptoProperties @ConstructorBinding constructor(

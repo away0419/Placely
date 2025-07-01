@@ -26,8 +26,17 @@ class SecurityConfig {
             }
             .authorizeHttpRequests { auth ->
                 auth
-                    .requestMatchers("/api/auth/login", "/api/auth/register").permitAll() // 로그인, 회원가입 허용
-                    .requestMatchers("/actuator/health").permitAll() // 헬스체크 허용
+                    .requestMatchers("/login", "/register").permitAll() // 로그인, 회원가입 허용
+                    .requestMatchers("/health").permitAll() // 헬스체크 허용 (경로 수정)
+                    // Swagger UI 관련 경로 허용 (개발환경용)
+                    .requestMatchers(
+                        "/swagger-ui.html",
+                        "/swagger-ui/**",
+                        "/api-docs/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**",
+                        "/webjars/**"
+                    ).permitAll()
                     .anyRequest().authenticated() // 나머지는 인증 필요
             }
             .httpBasic { it.disable() } // HTTP Basic 인증 비활성화
