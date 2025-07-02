@@ -34,6 +34,9 @@ subprojects {
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 		testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
 		testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+		// 코틀린 로깅 - Kotlin DSL을 제공하는 로깅 래퍼
+		implementation 'io.github.microutils:kotlin-logging-jvm:3.0.5'
 	}
 
 	kotlin {

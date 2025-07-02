@@ -1,12 +1,15 @@
 package com.placely.auth.controller
 
+import com.placely.auth.dto.LoginRequest
+import com.placely.auth.dto.LoginResponse
+import com.placely.auth.service.AuthService
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -15,23 +18,24 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @Tag(name = "인증/인가 API", description = "사용자 인증, 인가 관련 기능을 제공하는 API")
 class AuthController(
-//    private val authService: AuthService
+    private val authService: AuthService
 ) {
 
-//    /**
-//     * 로그인 API
-//     */
-//    @PostMapping("/login")
-//    fun login(@Valid @RequestBody request: LoginRequest): ResponseEntity<LoginResponse> {
-//        return try {
-//            val response = authService.login(request)
-//            ResponseEntity.ok(response)
-//        } catch (e: IllegalArgumentException) {
-//            ResponseEntity.badRequest().build()
-//        } catch (e: Exception) {
-//            ResponseEntity.internalServerError().build()
-//        }
-//    }
+    @Operation(
+        summary = "로그인",
+        description = "서비스 로그인 합니다."
+    )
+    @PostMapping("/login")
+    fun login(@Valid @RequestBody request: LoginRequest): ResponseEntity<LoginResponse> {
+        return try {
+            val response = authService.login(request)
+            ResponseEntity.ok(response)
+        } catch (e: IllegalArgumentException) {
+            ResponseEntity.badRequest().build()
+        } catch (e: Exception) {
+            ResponseEntity.internalServerError().build()
+        }
+    }
 //
 //    /**
 //     * 로그아웃 API
@@ -77,9 +81,6 @@ class AuthController(
 //        }
 //    }
 
-    /**
-     * 헬스체크 API
-     */
     @Operation(
         summary = "서비스 상태 확인",
         description = "Auth 서비스의 현재 상태를 확인합니다."

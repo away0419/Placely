@@ -21,12 +21,12 @@ interface TokenRepository : JpaRepository<Token, Long> {
      */
     @Query("""
         SELECT t FROM Token t 
-        WHERE t.tokenHash = :tokenHash 
+        WHERE t.tokenValue = :tokenValue 
         AND t.expiresAt > :currentTime 
         AND t.revokedAt IS NULL
     """)
     fun findValidTokenByHash(
-        @Param("tokenHash") tokenHash: String,
+        @Param("tokenValue") tokenValue: String,
         @Param("currentTime") currentTime: LocalDateTime = LocalDateTime.now()
     ): Optional<Token>
     

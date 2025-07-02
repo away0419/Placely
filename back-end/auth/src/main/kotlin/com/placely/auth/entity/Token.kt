@@ -22,8 +22,8 @@ data class Token(
     @Enumerated(EnumType.STRING)
     val tokenType: TokenType = TokenType.ACCESS,
 
-    @Column(name = "TOKEN_HASH", nullable = false, length = 255)
-    val tokenHash: String = "",
+    @Column(name = "TOKEN_VALUE", nullable = false, length = 255)
+    val tokenValue: String = "",
 
     @Column(name = "EXPIRES_AT", nullable = false)
     val expiresAt: LocalDateTime = LocalDateTime.now(),
@@ -39,7 +39,7 @@ data class Token(
         tokenId = 0,
         userId = 0,
         tokenType = TokenType.ACCESS,
-        tokenHash = "",
+        tokenValue = "",
         expiresAt = LocalDateTime.now(),
         revokedAt = null,
         createdAt = LocalDateTime.now()

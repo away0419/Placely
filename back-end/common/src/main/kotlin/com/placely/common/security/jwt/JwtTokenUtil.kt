@@ -144,46 +144,53 @@ class JwtTokenUtil(
     /**
      * Access 토큰 생성
      * @param userId String 사용자 ID
+     * @param nowDate Date 현재 시간 (밀리초)
      * @return String JWT 토큰
      */
-    fun generateAccessToken(userId: String): String {
+    fun generateAccessToken(userId: String, nowDate: Date): String {
         val claims = mapOf(
             "type" to JwtConstants.ACCESS,
             "iss" to jwtProperties.issuer
         )
 
-        return generateToken(userId, claims, jwtProperties.accessTokenExpiration)
+        return generateToken(userId, claims, nowDate, jwtProperties.accessTokenExpiration)
     }
 
     /**
      * Refresh 토큰 생성
      * @param userId String 사용자 ID
+     * @param nowDate Date 현재 시간 (UTC 시간)
      * @return String JWT 토큰
      */
-    fun generateRefreshToken(userId: String): String {
+    fun generateRefreshToken(userId: String, nowDate: Date): String {
         val claims = mapOf(
             "type" to JwtConstants.REFRESH,
             "iss" to jwtProperties.issuer
         )
 
-        return generateToken(userId, claims, jwtProperties.refreshTokenExpiration)
+        return generateToken(userId, claims, nowDate, jwtProperties.refreshTokenExpiration)
     }
 
     /**
-     * 토큰 생성 공통 메서드
+     *
      * @param subject String 주체 (사용자 ID)
      * @param extraClaims Map<String, Any> 추가 클레임
+     * @param nowDate Date 현재 시간
      * @param expiration Long 만료 시간 (밀리초)
      * @return String JWT 토큰
      */
-    private fun generateToken(subject: String, extraClaims: Map<String, Any>, expiration: Long): String {
-        val now = Date()
-        val expiryDate = Date(now.time + expiration)
+    private fun generateToken(
+        subject: String,
+        extraClaims: Map<String, Any>,
+        nowDate: Date,
+        expiration: Long
+    ): String {
+        val expiryDate = Date(nowDate.time + expiration)
 
         return Jwts.builder()
             .claims(extraClaims)
             .subject(subject)
-            .issuedAt(now)
+            .issuedAt(nowDate)
             .expiration(expiryDate)
             .signWith(key)
             .compact()
