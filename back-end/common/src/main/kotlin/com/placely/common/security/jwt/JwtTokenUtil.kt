@@ -149,7 +149,7 @@ class JwtTokenUtil(
      */
     fun generateAccessToken(userId: String, nowDate: Date): String {
         val claims = mapOf(
-            "type" to JwtConstants.ACCESS,
+            "type" to TokenType.ACCESS.name,
             "iss" to jwtProperties.issuer
         )
 
@@ -164,7 +164,7 @@ class JwtTokenUtil(
      */
     fun generateRefreshToken(userId: String, nowDate: Date): String {
         val claims = mapOf(
-            "type" to JwtConstants.REFRESH,
+            "type" to TokenType.REFRESH.name,
             "iss" to jwtProperties.issuer
         )
 

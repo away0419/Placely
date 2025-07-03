@@ -1,5 +1,6 @@
 package com.placely.auth.entity
 
+import com.placely.common.security.jwt.TokenType
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -45,10 +46,3 @@ data class Token(
         createdAt = LocalDateTime.now()
     )
 }
-
-/**
- * 토큰 타입
- */
-enum class TokenType {
-    ACCESS, REFRESH
-} 
