@@ -28,8 +28,8 @@ class AuthService(
     private val userRepository: UserRepository,
     private val tokenRepository: TokenRepository,
     private val jwtTokenUtil: JwtUtil,
-    private val tokenService: TokenService,
     private val redisUtil: RedisUtil,
+    private val tokenService: TokenService,
 ) {
 
     /**
