@@ -2,7 +2,7 @@ package com.placely.auth.integration
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.placely.auth.dto.LoginRequest
-import com.placely.auth.entity.User
+import com.placely.auth.entity.UserEntity
 import com.placely.auth.entity.UserStatus
 import com.placely.auth.repository.TokenRepository
 import com.placely.auth.repository.UserRepository
@@ -58,7 +58,7 @@ class AuthIntegrationTest : DescribeSpec() {
             context("유효한 사용자로 로그인할 때") {
                 it("성공적으로 토큰을 발급해야 한다") {
                     // given: 테스트용 사용자 데이터 저장
-                    val testUser = User(
+                    val testUser = UserEntity(
                         username = "integrationtest",
                         email = "integration@test.com",
                         passwordHash = "hashedPassword123",
@@ -97,7 +97,7 @@ class AuthIntegrationTest : DescribeSpec() {
             context("이메일로 로그인할 때") {
                 it("성공적으로 로그인되어야 한다") {
                     // given: 테스트용 사용자 데이터 저장
-                    val testUser = User(
+                    val testUser = UserEntity(
                         username = "emailtest",
                         email = "emailtest@example.com",
                         passwordHash = "hashedPassword123",
@@ -147,7 +147,7 @@ class AuthIntegrationTest : DescribeSpec() {
             context("비활성 상태 사용자로 로그인할 때") {
                 it("로그인에 실패해야 한다") {
                     // given: 비활성 상태의 테스트 사용자
-                    val inactiveUser = User(
+                    val inactiveUser = UserEntity(
                         username = "inactiveuser",
                         email = "inactive@test.com",
                         passwordHash = "hashedPassword123",
@@ -177,7 +177,7 @@ class AuthIntegrationTest : DescribeSpec() {
             context("삭제된 사용자로 로그인할 때") {
                 it("로그인에 실패해야 한다") {
                     // given: 삭제된 상태의 테스트 사용자
-                    val deletedUser = User(
+                    val deletedUser = UserEntity(
                         username = "deleteduser",
                         email = "deleted@test.com",
                         passwordHash = "hashedPassword123",
@@ -226,7 +226,7 @@ class AuthIntegrationTest : DescribeSpec() {
             context("로그인 성공 시") {
                 it("토큰이 데이터베이스에 저장되어야 한다") {
                     // given: 테스트용 사용자 데이터 저장
-                    val testUser = User(
+                    val testUser = UserEntity(
                         username = "tokentest",
                         email = "token@test.com",
                         passwordHash = "hashedPassword123",
@@ -255,7 +255,7 @@ class AuthIntegrationTest : DescribeSpec() {
 
                     // then: 토큰이 데이터베이스에 저장되었는지 확인
                     val tokenCountAfter = tokenRepository.count()
-                    
+
                     // ACCESS와 REFRESH 토큰 2개가 추가되어야 함
                     tokenCountAfter shouldBe tokenCountBefore + 2
                 }

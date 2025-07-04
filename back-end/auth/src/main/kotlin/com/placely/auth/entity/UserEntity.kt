@@ -8,7 +8,7 @@ import java.time.LocalDateTime
  */
 @Entity
 @Table(name = "AUTH_USERS")
-data class User(
+data class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_auth_users")
     @SequenceGenerator(name = "seq_auth_users", sequenceName = "SEQ_AUTH_USERS", allocationSize = 1)

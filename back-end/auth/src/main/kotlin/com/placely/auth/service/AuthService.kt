@@ -5,8 +5,10 @@ import com.placely.auth.dto.LoginResponse
 import com.placely.auth.dto.UserInfo
 import com.placely.auth.repository.TokenRepository
 import com.placely.auth.repository.UserRepository
-import com.placely.common.security.jwt.JwtTokenUtil
-import com.placely.common.security.jwt.TokenType
+import com.placely.common.redis.RedisUtil
+import com.placely.common.security.jwt.JwtType
+import com.placely.common.security.jwt.JwtUtil
+import com.placely.common.security.jwt.JwtInfo
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -25,15 +27,15 @@ private val log = KotlinLogging.logger {}
 class AuthService(
     private val userRepository: UserRepository,
     private val tokenRepository: TokenRepository,
-    private val jwtTokenUtil: JwtTokenUtil,
+    private val jwtTokenUtil: JwtUtil,
     private val tokenService: TokenService,
+    private val redisUtil: RedisUtil,
 ) {
 
     /**
      * 로그인 처리
      */
     fun login(request: LoginRequest): LoginResponse {
-        log.info { "로그인 기능 시작" }
 
         // 1. 사용자 조회 (사용자명 또는 이메일로)
         val user = userRepository.findByUsernameOrEmailForLogin(request.username)
@@ -49,13 +51,18 @@ class AuthService(
         val refreshToken = jwtTokenUtil.generateRefreshToken(user.userId.toString(), nowDate)
 
         // 4. 토큰 DB 저장
-        tokenService.saveTokenToDatabase(user.userId, accessToken, TokenType.ACCESS, nowLocalDateTime)
-        tokenService.saveTokenToDatabase(user.userId, refreshToken, TokenType.REFRESH, nowLocalDateTime)
+        tokenService.saveTokenToDatabase(user.userId, accessToken, JwtType.ACCESS, nowLocalDateTime)
+        val refreshTokenEntity =
+            tokenService.saveTokenToDatabase(user.userId, refreshToken, JwtType.REFRESH, nowLocalDateTime)
 
-        // 5. 마지막 로그인 시간 업데이트
+        // 5. Redis에 토큰 정보 저장
+        val tokenInfo = JwtInfo(refreshToken, "ip", "agent")
+        redisUtil.save(JwtType.REFRESH.name + refreshToken, tokenInfo, refreshTokenEntity.expiresAt)
+
+        // 6. 마지막 로그인 시간 업데이트
         userRepository.updateLastLoginTime(user.userId, nowLocalDateTime)
 
-        // 6. 응답 생성
+        // 7. 응답 생성
         return LoginResponse(
             accessToken = accessToken,
             refreshToken = refreshToken,
@@ -73,8 +80,14 @@ class AuthService(
     /**
      * 로그아웃 처리
      */
-    fun logout(userId: Long) {
-        // 사용자의 모든 토큰 무효화
+    fun logout(refreshToken: String) {
+        val userId = jwtTokenUtil.getUserIdFromToken(refreshToken)
+
+        // 1. Redis 정보 삭제
+        redisUtil.delete(JwtType.REFRESH.name + refreshToken)
+
+
+        // 2. 사용자의 모든 토큰 무효화 (DB 처리)
         tokenRepository.revokeAllTokensByUserId(userId)
     }
 

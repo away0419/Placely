@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -36,28 +37,38 @@ class AuthController(
             ResponseEntity.internalServerError().build()
         }
     }
-//
-//    /**
-//     * 로그아웃 API
-//     */
-//    @PostMapping("/logout")
-//    fun logout(@RequestHeader("Authorization") authorization: String): ResponseEntity<Map<String, String>> {
-//        return try {
-//            // Bearer 토큰에서 실제 토큰 추출
-//            val token = authorization.substring(7) // "Bearer " 제거
-//            val userId = authService.getUserIdFromToken(token)
-//
-//            authService.logout(userId)
-//
-//            ResponseEntity.ok(mapOf("message" to "로그아웃이 완료되었습니다"))
-//        } catch (e: Exception) {
-//            ResponseEntity.badRequest().body(mapOf("error" to "로그아웃 처리 중 오류가 발생했습니다"))
-//        }
-//    }
-//
+
+    /**
+     * 로그아웃 API
+     * Redis에서 토큰 정보를 삭제하고 블랙리스트에 추가
+     */
+    @Operation(
+        summary = "로그아웃",
+        description = "현재 토큰을 무효화하고 로그아웃 처리합니다."
+    )
+    @PostMapping("/logout")
+    fun logout(@RequestHeader("Authorization") authorization: String): ResponseEntity<Map<String, String>> {
+        return try {
+            // Bearer 토큰에서 실제 토큰 추출
+            val token = authorization.substring(7) // "Bearer " 제거
+            
+            // 토큰으로 로그아웃 처리 (Redis에서 토큰 삭제 및 블랙리스트 추가)
+            authService.logout(token)
+
+            ResponseEntity.ok(mapOf("message" to "로그아웃이 완료되었습니다"))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().body(mapOf("error" to "로그아웃 처리 중 오류가 발생했습니다"))
+        }
+    }
+
 //    /**
 //     * 토큰 유효성 검증 API
+//     * Redis 기반 토큰 검증 (블랙리스트 확인 포함)
 //     */
+//    @Operation(
+//        summary = "토큰 유효성 검증",
+//        description = "JWT 토큰의 유효성을 검증합니다. (블랙리스트 확인 포함)"
+//    )
 //    @PostMapping("/validate")
 //    fun validateToken(@RequestHeader("Authorization") authorization: String): ResponseEntity<Map<String, Any>> {
 //        return try {
@@ -90,7 +101,7 @@ class AuthController(
         return ResponseEntity.ok(
             mapOf(
                 "status" to "UP",
-                "service" to "auth-service",
+                "redis" to "auth-service",
                 "timestamp" to java.time.LocalDateTime.now().toString()
             )
         )

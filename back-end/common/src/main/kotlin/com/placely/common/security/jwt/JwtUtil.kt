@@ -13,7 +13,7 @@ import java.util.*
  * JWT 토큰 유틸리티
  */
 @Component
-class JwtTokenUtil(
+class JwtUtil(
     private val jwtProperties: JwtProperties
 ) {
 
@@ -65,9 +65,9 @@ class JwtTokenUtil(
      * @param token String
      * @return Long
      */
-    fun getUserIdFromToken(token: String): String {
+    fun getUserIdFromToken(token: String): Long {
         val claims = getClaimsFromToken(token)
-        return claims.subject
+        return claims.subject as Long
     }
 
     /**
@@ -149,7 +149,7 @@ class JwtTokenUtil(
      */
     fun generateAccessToken(userId: String, nowDate: Date): String {
         val claims = mapOf(
-            "type" to TokenType.ACCESS.name,
+            "type" to JwtType.ACCESS.name,
             "iss" to jwtProperties.issuer
         )
 
@@ -164,7 +164,7 @@ class JwtTokenUtil(
      */
     fun generateRefreshToken(userId: String, nowDate: Date): String {
         val claims = mapOf(
-            "type" to TokenType.REFRESH.name,
+            "type" to JwtType.REFRESH.name,
             "iss" to jwtProperties.issuer
         )
 

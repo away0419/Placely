@@ -2,7 +2,7 @@ package com.placely.auth.util
 
 import com.placely.common.security.exception.SecurityCustomErrorCode
 import com.placely.common.security.exception.SecurityCustomException
-import com.placely.common.security.jwt.TokenType
+import com.placely.common.security.jwt.JwtType
 import jakarta.servlet.http.Cookie
 import org.springframework.http.ResponseCookie
 import org.springframework.stereotype.Component
@@ -15,7 +15,7 @@ class RefreshCookieUtil {
      * @return ResponseCookie
      */
     fun generateRefreshTokenCookie(refreshToken: String): ResponseCookie {
-        return ResponseCookie.from(TokenType.REFRESH.name, refreshToken)
+        return ResponseCookie.from(JwtType.REFRESH.name, refreshToken)
             .httpOnly(true)
             .sameSite("None")
             .path("/")
@@ -29,7 +29,7 @@ class RefreshCookieUtil {
      * @return String
      */
     fun getRefreshToken(cookies: Array<Cookie>): String {
-        return cookies.firstOrNull { it.name == TokenType.REFRESH.name }?.value
+        return cookies.firstOrNull { it.name == JwtType.REFRESH.name }?.value
             ?: throw SecurityCustomException(SecurityCustomErrorCode.JWT_TOKEN_NOT_FOUND)
     }
 }

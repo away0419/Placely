@@ -1,6 +1,6 @@
 package com.placely.auth.entity
 
-import com.placely.common.security.jwt.TokenType
+import com.placely.common.security.jwt.JwtType
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime
  */
 @Entity
 @Table(name = "AUTH_TOKENS")
-data class Token(
+data class TokenEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_auth_tokens")
     @SequenceGenerator(name = "seq_auth_tokens", sequenceName = "SEQ_AUTH_TOKENS", allocationSize = 1)
@@ -21,7 +21,7 @@ data class Token(
 
     @Column(name = "TOKEN_TYPE", length = 20)
     @Enumerated(EnumType.STRING)
-    val tokenType: TokenType = TokenType.ACCESS,
+    val tokenType: JwtType = JwtType.ACCESS,
 
     @Column(name = "TOKEN_VALUE", nullable = false, length = 255)
     val tokenValue: String = "",
@@ -39,7 +39,7 @@ data class Token(
     constructor() : this(
         tokenId = 0,
         userId = 0,
-        tokenType = TokenType.ACCESS,
+        tokenType = JwtType.ACCESS,
         tokenValue = "",
         expiresAt = LocalDateTime.now(),
         revokedAt = null,

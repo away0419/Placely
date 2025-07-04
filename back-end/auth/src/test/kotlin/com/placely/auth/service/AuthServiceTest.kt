@@ -1,11 +1,12 @@
 package com.placely.auth.service
 
 import com.placely.auth.dto.LoginRequest
-import com.placely.auth.entity.User
+import com.placely.auth.entity.UserEntity
 import com.placely.auth.entity.UserStatus
 import com.placely.auth.repository.TokenRepository
 import com.placely.auth.repository.UserRepository
-import com.placely.common.security.jwt.JwtTokenUtil
+import com.placely.common.redis.RedisUtil
+import com.placely.common.security.jwt.JwtUtil
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
@@ -14,6 +15,7 @@ import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -23,14 +25,16 @@ class AuthServiceTest : DescribeSpec({
 
     val userRepository = mockk<UserRepository>()
     val tokenRepository = mockk<TokenRepository>()
-    val jwtTokenUtil = mockk<JwtTokenUtil>()
+    val jwtTokenUtil = mockk<JwtUtil>()
+    val redisUtil = mockk<RedisUtil>()
     val tokenService = mockk<TokenService>()
 
     val authService = AuthService(
         userRepository = userRepository,
         tokenRepository = tokenRepository,
         jwtTokenUtil = jwtTokenUtil,
-        tokenService = tokenService
+        redisUtil = redisUtil,
+        tokenService = tokenService,
     )
 
     afterEach {
@@ -46,7 +50,7 @@ class AuthServiceTest : DescribeSpec({
                     password = "password123"
                 )
 
-                val testUser = User(
+                val testUser = UserEntity(
                     userId = 1L,
                     username = "testuser",
                     email = "test@example.com",
@@ -56,6 +60,7 @@ class AuthServiceTest : DescribeSpec({
                     status = UserStatus.ACTIVE
                 )
 
+                val localDateTime = LocalDateTime.now()
                 val mockAccessToken = "mock-access-token"
                 val mockRefreshToken = "mock-refresh-token"
                 val mockExpirationSeconds = 3600L
@@ -66,9 +71,8 @@ class AuthServiceTest : DescribeSpec({
                 )
                 every { jwtTokenUtil.generateAccessToken(testUser.userId.toString(), any()) } returns mockAccessToken
                 every { jwtTokenUtil.generateRefreshToken(testUser.userId.toString(), any()) } returns mockRefreshToken
-                every { jwtTokenUtil.getAccessTokenExpirationSeconds() } returns mockExpirationSeconds
-                every { jwtTokenUtil.getRefreshTokenExpirationSeconds() } returns mockExpirationSeconds
                 every { tokenService.saveTokenToDatabase(any(), any(), any(), any()) } returns mockk()
+                every { redisUtil.save(any(), any(), localDateTime) } returns mockk()
                 every { userRepository.updateLastLoginTime(any(), any()) } returns 1
 
                 // when: 로그인 실행
@@ -120,7 +124,7 @@ class AuthServiceTest : DescribeSpec({
                     password = "password123"
                 )
 
-                val testUser = User(
+                val testUser = UserEntity(
                     userId = 1L,
                     username = "testuser",
                     email = "test@example.com",
@@ -157,11 +161,12 @@ class AuthServiceTest : DescribeSpec({
             it("해당 사용자의 모든 토큰이 무효화되어야 한다") {
                 // given: 사용자 ID
                 val userId = 1L
+                val refreshToken = "mock-refresh-token"
 
                 every { tokenRepository.revokeAllTokensByUserId(userId) } returns 2
 
                 // when: 로그아웃 실행
-                authService.logout(userId)
+                authService.logout(refreshToken)
 
                 // then: 토큰 무효화 메서드 호출 검증
                 verify(exactly = 1) { tokenRepository.revokeAllTokensByUserId(userId) }
