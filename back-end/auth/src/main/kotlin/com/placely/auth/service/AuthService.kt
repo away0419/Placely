@@ -27,7 +27,7 @@ private val log = KotlinLogging.logger {}
 class AuthService(
     private val userRepository: UserRepository,
     private val tokenRepository: TokenRepository,
-    private val jwtTokenUtil: JwtUtil,
+    private val jwtUtil: JwtUtil,
     private val redisUtil: RedisUtil,
     private val tokenService: TokenService,
 ) {
@@ -47,8 +47,8 @@ class AuthService(
         val nowLocalDateTime = LocalDateTime.ofInstant(nowInstant, ZoneId.systemDefault())
 
         // 3. JWT 토큰 생성
-        val accessToken = jwtTokenUtil.generateAccessToken(user.userId.toString(), nowDate)
-        val refreshToken = jwtTokenUtil.generateRefreshToken(user.userId.toString(), nowDate)
+        val accessToken = jwtUtil.generateAccessToken(user.userId.toString(), nowDate)
+        val refreshToken = jwtUtil.generateRefreshToken(user.userId.toString(), nowDate)
 
         // 4. 토큰 DB 저장
         tokenService.saveTokenToDatabase(user.userId, accessToken, JwtType.ACCESS, nowLocalDateTime)
@@ -66,7 +66,7 @@ class AuthService(
         return LoginResponse(
             accessToken = accessToken,
             refreshToken = refreshToken,
-            expiresIn = jwtTokenUtil.getAccessTokenExpirationSeconds(),
+            expiresIn = jwtUtil.getAccessTokenExpirationSeconds(),
             user = UserInfo(
                 userId = user.userId,
                 username = user.username,
@@ -81,7 +81,7 @@ class AuthService(
      * 로그아웃 처리
      */
     fun logout(refreshToken: String) {
-        val userId = jwtTokenUtil.getUserIdFromToken(refreshToken)
+        val userId = jwtUtil.getUserIdFromToken(refreshToken)
 
         // 1. Redis 정보 삭제
         redisUtil.delete(JwtType.REFRESH.name + refreshToken)

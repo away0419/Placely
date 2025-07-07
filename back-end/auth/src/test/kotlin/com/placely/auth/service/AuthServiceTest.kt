@@ -26,14 +26,14 @@ class AuthServiceTest : DescribeSpec({
 
     val userRepository = mockk<UserRepository>()
     val tokenRepository = mockk<TokenRepository>()
-    val jwtTokenUtil = mockk<JwtUtil>()
+    val jwtUtil = mockk<JwtUtil>()
     val redisUtil = mockk<RedisUtil>()
     val tokenService = mockk<TokenService>()
 
     val authService = AuthService(
         userRepository = userRepository,
         tokenRepository = tokenRepository,
-        jwtTokenUtil = jwtTokenUtil,
+        jwtUtil = jwtUtil,
         redisUtil = redisUtil,
         tokenService = tokenService,
     )
@@ -73,9 +73,9 @@ class AuthServiceTest : DescribeSpec({
                     testUser
                 )
                 every { mockTokenEntity.expiresAt } returns mockExpiresAt
-                every { jwtTokenUtil.generateAccessToken(testUser.userId.toString(), any()) } returns mockAccessToken
-                every { jwtTokenUtil.generateRefreshToken(testUser.userId.toString(), any()) } returns mockRefreshToken
-                every { jwtTokenUtil.getAccessTokenExpirationSeconds() } returns mockExpirationSeconds
+                every { jwtUtil.generateAccessToken(testUser.userId.toString(), any()) } returns mockAccessToken
+                every { jwtUtil.generateRefreshToken(testUser.userId.toString(), any()) } returns mockRefreshToken
+                every { jwtUtil.getAccessTokenExpirationSeconds() } returns mockExpirationSeconds
                 every { tokenService.saveTokenToDatabase(any(), any(), any(), any()) } returns mockTokenEntity
                 every { redisUtil.save(any(), any(), mockExpiresAt) } returns Unit
                 every { userRepository.updateLastLoginTime(any(), any()) } returns 1
@@ -157,9 +157,9 @@ class AuthServiceTest : DescribeSpec({
                 every { userRepository.findByUsernameOrEmailForLogin(loginRequest.username) } returns Optional.of(
                     testUser
                 )
-                every { jwtTokenUtil.generateAccessToken(testUser.userId.toString(), any()) } returns mockAccessToken
-                every { jwtTokenUtil.generateRefreshToken(testUser.userId.toString(), any()) } returns mockRefreshToken
-                every { jwtTokenUtil.getAccessTokenExpirationSeconds() } returns 3600L
+                every { jwtUtil.generateAccessToken(testUser.userId.toString(), any()) } returns mockAccessToken
+                every { jwtUtil.generateRefreshToken(testUser.userId.toString(), any()) } returns mockRefreshToken
+                every { jwtUtil.getAccessTokenExpirationSeconds() } returns 3600L
                 every { tokenService.saveTokenToDatabase(any(), any(), any(), any()) } returns mockTokenEntity
                 every { redisUtil.save(any(), any(), mockExpiresAt) } returns Unit
                 every { userRepository.updateLastLoginTime(any(), any()) } returns 1
@@ -182,7 +182,7 @@ class AuthServiceTest : DescribeSpec({
                 val refreshToken = "mock-refresh-token"
                 val userId = 1L
 
-                every { jwtTokenUtil.getUserIdFromToken(refreshToken) } returns userId
+                every { jwtUtil.getUserIdFromToken(refreshToken) } returns userId
                 every { redisUtil.delete(any()) } returns Unit
                 every { tokenRepository.revokeAllTokensByUserId(userId) } returns 2
 
@@ -190,7 +190,7 @@ class AuthServiceTest : DescribeSpec({
                 authService.logout(refreshToken)
 
                 // then: Redis 삭제 및 토큰 무효화 메서드 호출 검증
-                verify(exactly = 1) { jwtTokenUtil.getUserIdFromToken(refreshToken) }
+                verify(exactly = 1) { jwtUtil.getUserIdFromToken(refreshToken) }
                 verify(exactly = 1) { redisUtil.delete(any()) }
                 verify(exactly = 1) { tokenRepository.revokeAllTokensByUserId(userId) }
             }

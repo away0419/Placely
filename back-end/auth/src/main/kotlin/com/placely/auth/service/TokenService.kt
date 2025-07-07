@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 @Transactional
 class TokenService(
     private val tokenRepository: TokenRepository,
-    private val jwtTokenUtil: JwtUtil,
+    private val jwtUtil: JwtUtil,
 ) {
 
     /**
@@ -25,8 +25,8 @@ class TokenService(
         nowLocalDateTime: LocalDateTime
     ): TokenEntity {
         val expiresAt = when (tokenType) {
-            JwtType.ACCESS -> nowLocalDateTime.plusSeconds(jwtTokenUtil.getAccessTokenExpirationSeconds())
-            JwtType.REFRESH -> nowLocalDateTime.plusSeconds(jwtTokenUtil.getRefreshTokenExpirationSeconds())
+            JwtType.ACCESS -> nowLocalDateTime.plusSeconds(jwtUtil.getAccessTokenExpirationSeconds())
+            JwtType.REFRESH -> nowLocalDateTime.plusSeconds(jwtUtil.getRefreshTokenExpirationSeconds())
         }
 
         val tokenEntity = TokenEntity(
@@ -49,7 +49,7 @@ class TokenService(
 //        try {
 //
 //            // 2. JWT 토큰 유효성 검증
-//            if (!jwtTokenUtil.isTokenValid(token)) {
+//            if (!jwtUtil.isTokenValid(token)) {
 //                log.warn { "유효하지 않은 JWT 토큰입니다" }
 //                return false
 //            }
