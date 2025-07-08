@@ -38,10 +38,6 @@ class AuthController(
         }
     }
 
-    /**
-     * 로그아웃 API
-     * Redis에서 토큰 정보를 삭제하고 블랙리스트에 추가
-     */
     @Operation(
         summary = "로그아웃",
         description = "현재 토큰을 무효화하고 로그아웃 처리합니다."
@@ -60,37 +56,6 @@ class AuthController(
             ResponseEntity.badRequest().body(mapOf("error" to "로그아웃 처리 중 오류가 발생했습니다"))
         }
     }
-
-//    /**
-//     * 토큰 유효성 검증 API
-//     * Redis 기반 토큰 검증 (블랙리스트 확인 포함)
-//     */
-//    @Operation(
-//        summary = "토큰 유효성 검증",
-//        description = "JWT 토큰의 유효성을 검증합니다. (블랙리스트 확인 포함)"
-//    )
-//    @PostMapping("/validate")
-//    fun validateToken(@RequestHeader("Authorization") authorization: String): ResponseEntity<Map<String, Any>> {
-//        return try {
-//            val token = authorization.substring(7) // "Bearer " 제거
-//            val isValid = authService.validateToken(token)
-//
-//            if (isValid) {
-//                val userId = authService.getUserIdFromToken(token)
-//                ResponseEntity.ok(mapOf(
-//                    "valid" to true,
-//                    "userId" to userId
-//                ))
-//            } else {
-//                ResponseEntity.ok(mapOf("valid" to false))
-//            }
-//        } catch (e: Exception) {
-//            ResponseEntity.badRequest().body(mapOf(
-//                "valid" to false,
-//                "error" to "토큰 검증 중 오류가 발생했습니다"
-//            ))
-//        }
-//    }
 
     @Operation(
         summary = "서비스 상태 확인",

@@ -53,4 +53,5 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
         @Param("userId") userId: Long,
         @Param("loginTime") loginTime: LocalDateTime
     ): Int
+
 } 
