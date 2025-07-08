@@ -1,5 +1,6 @@
 package com.placely.auth.repository
 
+import com.placely.auth.dto.AuthUserDTO
 import com.placely.auth.entity.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
@@ -52,6 +53,24 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
     fun updateLastLoginTime(
         @Param("userId") userId: Long,
         @Param("loginTime") loginTime: LocalDateTime
+    ): Int
+
+    /**
+     * 유저 정보 변경
+     */
+    @Modifying
+    @Query(
+        """
+        UPDATE UserEntity u 
+        SET u.email = :email, u.phone = :phone, 
+            u.fullName = :pullName, u.birthDate = :birthDate, 
+            u.gender = :gender, u.updatedAt = :updatedAt, 
+            u.updatedBy = :updateBy 
+        WHERE u.userId = :userId
+    """
+    )
+    fun updateUserInfo(
+        @Param("authUserDTO") authUserDTO: AuthUserDTO
     ): Int
 
 } 
