@@ -1,143 +1,15 @@
-2025-07-04 16:30:52 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Starting AuthApplicationKt using Java 17.0.11 with PID 1848 (D:\github\Placely\Placely\back-end\auth\build\classes\kotlin\main started by jun_kyung in D:\github\Placely\Placely\back-end)
-2025-07-04 16:30:52 [restartedMain] DEBUG com.placely.auth.AuthApplicationKt - Running with Spring Boot v3.5.3, Spring v6.2.8
-2025-07-04 16:30:52 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - The following 2 profiles are active: "common", "env"
-2025-07-04 16:30:52 [restartedMain] INFO  o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\jun_kyung\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\23.3.0.23.09\405bcbc8d8dab59f562125fa1d2b7e06d21649f3\ojdbc11-23.3.0.23.09.jar referenced one or more files that do not exist: file:/C:/Users/jun_kyung/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.3.0.23.09/405bcbc8d8dab59f562125fa1d2b7e06d21649f3/oraclepki.jar
-2025-07-04 16:30:52 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-07-04 16:30:52 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 161 ms. Found 2 JPA repository interfaces.
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.TokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2025-07-04 16:30:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
-2025-07-04 16:30:56 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2025-07-04 16:30:56 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-07-04 16:30:56 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-07-04 16:30:56 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring embedded WebApplicationContext
-2025-07-04 16:30:56 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3203 ms
-2025-07-04 16:30:56 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-07-04 16:30:56 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
-2025-07-04 16:30:56 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-07-04 16:30:56 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-07-04 16:30:56 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-07-04 16:30:57 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@6b3b3f10
-2025-07-04 16:30:57 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-07-04 16:30:58 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-07-04 16:30:58 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 19.28
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-07-04 16:30:59 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-07-04 16:30:59 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-07-04 16:31:00 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-07-04 16:31:01 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
-2025-07-04 16:31:01 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: 92d0f7a5-6c19-4b06-82a1-1d955af32f55
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2025-07-04 16:31:01 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2025-07-04 16:31:01 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-07-04 16:31:02 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-07-04 16:31:02 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/auth'
-2025-07-04 16:31:02 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Started AuthApplicationKt in 10.995 seconds (process running for 11.947)
-2025-07-04 16:31:03 [RMI TCP Connection(2)-172.30.1.52] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-07-04 16:31:03 [RMI TCP Connection(2)-172.30.1.52] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-07-04 16:31:03 [RMI TCP Connection(2)-172.30.1.52] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
-2025-07-04 16:31:18 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.html
-2025-07-04 16:31:18 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.html
-2025-07-04 16:31:18 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui.css
-2025-07-04 16:31:18 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui.css
-2025-07-04 16:31:18 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.css
-2025-07-04 16:31:18 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-bundle.js
-2025-07-04 16:31:18 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-bundle.js
-2025-07-04 16:31:18 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.css
-2025-07-04 16:31:18 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-standalone-preset.js
-2025-07-04 16:31:18 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-initializer.js
-2025-07-04 16:31:18 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-standalone-preset.js
-2025-07-04 16:31:18 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-initializer.js
-2025-07-04 16:31:18 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api-docs/swagger-config
-2025-07-04 16:31:18 [http-nio-8081-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api-docs/swagger-config
-2025-07-04 16:31:18 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api-docs
-2025-07-04 16:31:18 [http-nio-8081-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:18 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api-docs
-2025-07-04 16:31:19 [http-nio-8081-exec-8] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 492 ms
-2025-07-04 16:31:23 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /health
-2025-07-04 16:31:23 [http-nio-8081-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:31:23 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /health
-2025-07-04 16:31:50 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
-2025-07-04 16:31:50 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-07-04 16:31:51 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-07-04 16:31:51 [Thread-7] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-07-04 16:31:51 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-07-04 16:31:51 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-07-04 16:31:51 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Starting AuthApplicationKt using Java 17.0.11 with PID 1848 (D:\github\Placely\Placely\back-end\auth\build\classes\kotlin\main started by jun_kyung in D:\github\Placely\Placely\back-end)
-2025-07-04 16:31:51 [restartedMain] DEBUG com.placely.auth.AuthApplicationKt - Running with Spring Boot v3.5.3, Spring v6.2.8
-2025-07-04 16:31:51 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - The following 2 profiles are active: "common", "env"
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 2 JPA repository interfaces.
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.TokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2025-07-04 16:31:52 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-07-04 16:31:52 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-07-04 16:31:52 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring embedded WebApplicationContext
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 858 ms
-2025-07-04 16:31:52 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-07-04 16:31:52 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-07-04 16:31:52 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-07-04 16:31:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
-2025-07-04 16:31:53 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection oracle.jdbc.driver.T4CConnection@684a199
-2025-07-04 16:31:53 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
-2025-07-04 16:31:53 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-07-04 16:31:53 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
-	Database driver: undefined/unknown
-	Database version: 19.28
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-07-04 16:31:53 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-07-04 16:31:53 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-07-04 16:31:53 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
-2025-07-04 16:31:53 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: fa9f7a0b-86b9-4b68-ae3c-2496fcbf5a0a
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2025-07-04 16:31:53 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2025-07-04 16:31:53 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-07-04 16:31:54 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-07-04 16:31:54 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/auth'
-2025-07-04 16:31:54 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Started AuthApplicationKt in 2.345 seconds (process running for 63.489)
-2025-07-04 16:31:54 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
-2025-07-04 16:32:06 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-07-04 16:32:06 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-07-04 16:32:06 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
-2025-07-04 16:32:06 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
-2025-07-04 16:32:06 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2025-07-04 16:32:06 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /login
-2025-07-04 16:32:06 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
+2025-07-09 08:57:37 [HikariPool-3:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-3 - Failed to validate connection oracle.jdbc.driver.T4CConnection@3657531c (ORA-17008: 접속을 해제했습니다.
+https://docs.oracle.com/error-help/db/ora-17008/). Possibly consider using a shorter maxLifetime value.
+2025-07-09 09:31:45 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-09 09:31:45 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-09 09:31:45 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-07-09 09:31:45 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
+2025-07-09 09:31:45 [http-nio-8081-exec-1] INFO  c.p.a.filter.JWTAuthenticationFilter - ===========JWTAuthenticationFilter============
+2025-07-09 09:31:45 [http-nio-8081-exec-1] INFO  c.p.a.filter.JWTAuthenticationFilter - JWT 헤더 없음
+2025-07-09 09:31:45 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-07-09 09:31:45 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /login
+2025-07-09 09:31:45 [http-nio-8081-exec-1] DEBUG c.placely.auth.service.AuthService - hashing: C+h3EhZw6Lgd9S3x682xII+bcMB+SazrZRntvNsGuWA=
+2025-07-09 09:31:45 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
     /* SELECT
         u 
     FROM
@@ -175,17 +47,252 @@ This generated password is for development use only. Your security configuration
             ) 
             and ue1_0.is_deleted='N' 
             and ue1_0.status='ACTIVE'
-2025-07-04 16:32:06 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
+2025-07-09 09:36:28 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
+2025-07-09 09:36:28 [http-nio-8081-exec-2] INFO  c.p.a.filter.JWTAuthenticationFilter - ===========JWTAuthenticationFilter============
+2025-07-09 09:36:28 [http-nio-8081-exec-2] INFO  c.p.a.filter.JWTAuthenticationFilter - JWT 헤더 없음
+2025-07-09 09:36:28 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-07-09 09:36:28 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /login
+2025-07-09 09:36:28 [http-nio-8081-exec-2] DEBUG c.placely.auth.service.AuthService - hashing: C+h3EhZw6Lgd9S3x682xII+bcMB+SazrZRntvNsGuWA=
+2025-07-09 09:36:28 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - 
+    /* SELECT
+        u 
+    FROM
+        UserEntity u 
+    WHERE
+        (
+            u.username = :loginId 
+            OR u.email = :loginId
+        ) 
+        AND u.isDeleted = 'N' 
+        AND u.status = 'ACTIVE' */ select
+            ue1_0.user_id,
+            ue1_0.birth_date,
+            ue1_0.created_at,
+            ue1_0.created_by,
+            ue1_0.deleted_at,
+            ue1_0.deleted_by,
+            ue1_0.email,
+            ue1_0.full_name,
+            ue1_0.gender,
+            ue1_0.is_deleted,
+            ue1_0.last_login_at,
+            ue1_0.password_hash,
+            ue1_0.phone,
+            ue1_0.status,
+            ue1_0.updated_at,
+            ue1_0.updated_by,
+            ue1_0.username 
+        from
+            auth_users ue1_0 
+        where
+            (
+                ue1_0.username=? 
+                or ue1_0.email=?
+            ) 
+            and ue1_0.is_deleted='N' 
+            and ue1_0.status='ACTIVE'
+2025-07-09 09:36:28 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
+2025-07-09 09:36:28 [http-nio-8081-exec-3] INFO  c.p.a.filter.JWTAuthenticationFilter - ===========JWTAuthenticationFilter============
+2025-07-09 09:36:28 [http-nio-8081-exec-3] INFO  c.p.a.filter.JWTAuthenticationFilter - JWT 헤더 없음
+2025-07-09 09:36:28 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-07-09 09:36:28 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /login
+2025-07-09 09:36:28 [http-nio-8081-exec-3] DEBUG c.placely.auth.service.AuthService - hashing: C+h3EhZw6Lgd9S3x682xII+bcMB+SazrZRntvNsGuWA=
+2025-07-09 09:36:28 [http-nio-8081-exec-3] DEBUG org.hibernate.SQL - 
+    /* SELECT
+        u 
+    FROM
+        UserEntity u 
+    WHERE
+        (
+            u.username = :loginId 
+            OR u.email = :loginId
+        ) 
+        AND u.isDeleted = 'N' 
+        AND u.status = 'ACTIVE' */ select
+            ue1_0.user_id,
+            ue1_0.birth_date,
+            ue1_0.created_at,
+            ue1_0.created_by,
+            ue1_0.deleted_at,
+            ue1_0.deleted_by,
+            ue1_0.email,
+            ue1_0.full_name,
+            ue1_0.gender,
+            ue1_0.is_deleted,
+            ue1_0.last_login_at,
+            ue1_0.password_hash,
+            ue1_0.phone,
+            ue1_0.status,
+            ue1_0.updated_at,
+            ue1_0.updated_by,
+            ue1_0.username 
+        from
+            auth_users ue1_0 
+        where
+            (
+                ue1_0.username=? 
+                or ue1_0.email=?
+            ) 
+            and ue1_0.is_deleted='N' 
+            and ue1_0.status='ACTIVE'
+2025-07-09 09:42:03 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-09 09:42:03 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-07-09 09:42:03 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-09 09:42:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2025-07-09 09:42:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2025-07-09 09:42:27 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Starting AuthApplicationKt using Java 17.0.11 with PID 24532 (D:\github\Placely\Placely\back-end\auth\build\classes\kotlin\main started by jun_kyung in D:\github\Placely\Placely\back-end)
+2025-07-09 09:42:27 [restartedMain] DEBUG com.placely.auth.AuthApplicationKt - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-09 09:42:27 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - The following 2 profiles are active: "common", "env"
+2025-07-09 09:42:27 [restartedMain] INFO  o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in C:\Users\jun_kyung\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\23.3.0.23.09\405bcbc8d8dab59f562125fa1d2b7e06d21649f3\ojdbc11-23.3.0.23.09.jar referenced one or more files that do not exist: file:/C:/Users/jun_kyung/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.3.0.23.09/405bcbc8d8dab59f562125fa1d2b7e06d21649f3/oraclepki.jar
+2025-07-09 09:42:27 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-09 09:42:27 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 259 ms. Found 2 JPA repository interfaces.
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.TokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-07-09 09:42:32 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2025-07-09 09:42:33 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-07-09 09:42:33 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-09 09:42:33 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-09 09:42:33 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring embedded WebApplicationContext
+2025-07-09 09:42:33 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6432 ms
+2025-07-09 09:42:33 [restartedMain] DEBUG c.p.a.filter.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-07-09 09:42:34 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-09 09:42:34 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-09 09:42:34 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-09 09:42:35 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-09 09:42:35 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-07-09 09:42:36 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@74fae210
+2025-07-09 09:42:36 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-07-09 09:42:37 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-09 09:42:37 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 19.28
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-09 09:42:39 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-09 09:42:39 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-09 09:42:40 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-09 09:42:43 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2025-07-09 09:42:43 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 46987a3a-673f-4d45-b043-dac53d994f7f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-07-09 09:42:43 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-07-09 09:42:43 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-07-09 09:42:44 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-07-09 09:42:44 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/auth'
+2025-07-09 09:42:44 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Started AuthApplicationKt in 19.226 seconds (process running for 21.162)
+2025-07-09 09:42:45 [RMI TCP Connection(2)-172.30.1.52] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-09 09:42:45 [RMI TCP Connection(2)-172.30.1.52] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-09 09:42:45 [RMI TCP Connection(2)-172.30.1.52] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-07-09 09:43:12 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
+2025-07-09 09:43:12 [http-nio-8081-exec-1] INFO  c.p.a.filter.JWTAuthenticationFilter - ===========JWTAuthenticationFilter============
+2025-07-09 09:43:12 [http-nio-8081-exec-1] INFO  c.p.a.filter.JWTAuthenticationFilter - JWT 헤더 없음
+2025-07-09 09:43:12 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-07-09 09:43:12 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /login
+2025-07-09 09:43:13 [http-nio-8081-exec-1] DEBUG c.placely.auth.service.AuthService - hashing: C+h3EhZw6Lgd9S3x682xII+bcMB+SazrZRntvNsGuWA=
+2025-07-09 09:43:13 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
+    /* SELECT
+        u 
+    FROM
+        UserEntity u 
+    WHERE
+        (
+            u.username = :loginId 
+            OR u.email = :loginId
+        ) 
+        AND u.isDeleted = 'N' 
+        AND u.status = 'ACTIVE' */ select
+            ue1_0.user_id,
+            ue1_0.birth_date,
+            ue1_0.created_at,
+            ue1_0.created_by,
+            ue1_0.deleted_at,
+            ue1_0.deleted_by,
+            ue1_0.email,
+            ue1_0.full_name,
+            ue1_0.gender,
+            ue1_0.is_deleted,
+            ue1_0.last_login_at,
+            ue1_0.password_hash,
+            ue1_0.phone,
+            ue1_0.status,
+            ue1_0.updated_at,
+            ue1_0.updated_by,
+            ue1_0.username 
+        from
+            auth_users ue1_0 
+        where
+            (
+                ue1_0.username=? 
+                or ue1_0.email=?
+            ) 
+            and ue1_0.is_deleted='N' 
+            and ue1_0.status='ACTIVE'
+2025-07-09 09:48:49 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
+2025-07-09 09:48:49 [http-nio-8081-exec-2] INFO  c.p.a.filter.JWTAuthenticationFilter - ===========JWTAuthenticationFilter============
+2025-07-09 09:48:49 [http-nio-8081-exec-2] INFO  c.p.a.filter.JWTAuthenticationFilter - JWT 헤더 없음
+2025-07-09 09:48:49 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-07-09 09:48:49 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /login
+2025-07-09 09:48:49 [http-nio-8081-exec-2] DEBUG c.placely.auth.service.AuthService - hashing: C+h3EhZw6Lgd9S3x682xII+bcMB+SazrZRntvNsGuWA=
+2025-07-09 09:48:49 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - 
+    /* SELECT
+        u 
+    FROM
+        UserEntity u 
+    WHERE
+        (
+            u.username = :loginId 
+            OR u.email = :loginId
+        ) 
+        AND u.isDeleted = 'N' 
+        AND u.status = 'ACTIVE' */ select
+            ue1_0.user_id,
+            ue1_0.birth_date,
+            ue1_0.created_at,
+            ue1_0.created_by,
+            ue1_0.deleted_at,
+            ue1_0.deleted_by,
+            ue1_0.email,
+            ue1_0.full_name,
+            ue1_0.gender,
+            ue1_0.is_deleted,
+            ue1_0.last_login_at,
+            ue1_0.password_hash,
+            ue1_0.phone,
+            ue1_0.status,
+            ue1_0.updated_at,
+            ue1_0.updated_by,
+            ue1_0.username 
+        from
+            auth_users ue1_0 
+        where
+            (
+                ue1_0.username=? 
+                or ue1_0.email=?
+            ) 
+            and ue1_0.is_deleted='N' 
+            and ue1_0.status='ACTIVE'
+2025-07-09 09:48:50 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - 
     select
         seq_auth_tokens.nextval 
     from
         dual
-2025-07-04 16:32:06 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
+2025-07-09 09:48:50 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - 
     select
         seq_auth_tokens.nextval 
     from
         dual
-2025-07-04 16:32:07 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
+2025-07-09 09:48:50 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - 
     /* UPDATE
         UserEntity u 
     SET
@@ -198,22 +305,211 @@ This generated password is for development use only. Your security configuration
         ue1_0.updated_at=? 
     where
         ue1_0.user_id=?
-2025-07-04 16:32:07 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
+2025-07-09 09:48:50 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - 
     /* insert for
         com.placely.auth.entity.TokenEntity */insert 
     into
         auth_tokens (created_at, expires_at, revoked_at, token_type, token_value, user_id, token_id) 
     values
         (?, ?, ?, ?, ?, ?, ?)
-2025-07-04 16:32:07 [http-nio-8081-exec-1] DEBUG org.hibernate.SQL - 
+2025-07-09 09:48:50 [http-nio-8081-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 904, SQLState: 42000
+2025-07-09 09:48:50 [http-nio-8081-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ORA-00904: "TOKEN_VALUE": 부적합한 식별자
+
+https://docs.oracle.com/error-help/db/ora-00904/
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /login
+2025-07-09 09:55:06 [http-nio-8081-exec-3] INFO  c.p.a.filter.JWTAuthenticationFilter - ===========JWTAuthenticationFilter============
+2025-07-09 09:55:06 [http-nio-8081-exec-3] INFO  c.p.a.filter.JWTAuthenticationFilter - JWT 헤더 없음
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /login
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG c.placely.auth.service.AuthService - hashing: C+h3EhZw6Lgd9S3x682xII+bcMB+SazrZRntvNsGuWA=
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG org.hibernate.SQL - 
+    /* SELECT
+        u 
+    FROM
+        UserEntity u 
+    WHERE
+        (
+            u.username = :loginId 
+            OR u.email = :loginId
+        ) 
+        AND u.isDeleted = 'N' 
+        AND u.status = 'ACTIVE' */ select
+            ue1_0.user_id,
+            ue1_0.birth_date,
+            ue1_0.created_at,
+            ue1_0.created_by,
+            ue1_0.deleted_at,
+            ue1_0.deleted_by,
+            ue1_0.email,
+            ue1_0.full_name,
+            ue1_0.gender,
+            ue1_0.is_deleted,
+            ue1_0.last_login_at,
+            ue1_0.password_hash,
+            ue1_0.phone,
+            ue1_0.status,
+            ue1_0.updated_at,
+            ue1_0.updated_by,
+            ue1_0.username 
+        from
+            auth_users ue1_0 
+        where
+            (
+                ue1_0.username=? 
+                or ue1_0.email=?
+            ) 
+            and ue1_0.is_deleted='N' 
+            and ue1_0.status='ACTIVE'
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        seq_auth_tokens.nextval 
+    from
+        dual
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        seq_auth_tokens.nextval 
+    from
+        dual
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG org.hibernate.SQL - 
+    /* UPDATE
+        UserEntity u 
+    SET
+        u.lastLoginAt = :loginTime,
+        u.updatedAt = :loginTime 
+    WHERE
+        u.userId = :userId */ update auth_users ue1_0 
+    set
+        ue1_0.last_login_at=?,
+        ue1_0.updated_at=? 
+    where
+        ue1_0.user_id=?
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG org.hibernate.SQL - 
     /* insert for
         com.placely.auth.entity.TokenEntity */insert 
     into
         auth_tokens (created_at, expires_at, revoked_at, token_type, token_value, user_id, token_id) 
     values
         (?, ?, ?, ?, ?, ?, ?)
-2025-07-04 16:32:36 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-07-04 16:32:36 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-07-04 16:32:36 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-07-04 16:32:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
-2025-07-04 16:32:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2025-07-09 09:55:06 [http-nio-8081-exec-3] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.placely.auth.entity.TokenEntity */insert 
+    into
+        auth_tokens (created_at, expires_at, revoked_at, token_type, token_value, user_id, token_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-07-09 10:19:45 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /health
+2025-07-09 10:19:45 [http-nio-8081-exec-5] INFO  c.p.a.filter.JWTAuthenticationFilter - ===========JWTAuthenticationFilter============
+2025-07-09 10:19:45 [http-nio-8081-exec-5] INFO  c.p.a.filter.JWTAuthenticationFilter - JWT 헤더 없음
+2025-07-09 10:19:45 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-07-09 10:19:45 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /health
+2025-07-09 10:21:58 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 3 class path changes (0 additions, 3 deletions, 0 modifications)
+2025-07-09 10:21:58 [Thread-7] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-09 10:22:00 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-07-09 10:22:00 [Thread-7] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-09 10:22:00 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-07-09 10:22:00 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-07-09 10:22:01 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Starting AuthApplicationKt using Java 17.0.11 with PID 24532 (D:\github\Placely\Placely\back-end\auth\build\classes\kotlin\main started by jun_kyung in D:\github\Placely\Placely\back-end)
+2025-07-09 10:22:01 [restartedMain] DEBUG com.placely.auth.AuthApplicationKt - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-09 10:22:01 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - The following 2 profiles are active: "common", "env"
+2025-07-09 10:22:03 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-09 10:22:03 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-09 10:22:03 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.NoClassDefFoundError: com/placely/auth/dto/AuthUserDTO
+2025-07-09 10:22:03 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-07-09 10:22:03 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.NoClassDefFoundError: com/placely/auth/dto/AuthUserDTO
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402) ~[na:na]
+	at java.base/java.lang.Class.privateGetPublicMethods(Class.java:3427) ~[na:na]
+	at java.base/java.lang.Class.getMethods(Class.java:2019) ~[na:na]
+	at org.springframework.data.util.ReactiveWrappers.usesReactiveType(ReactiveWrappers.java:141) ~[spring-data-commons-3.5.1.jar:3.5.1]
+	at org.springframework.data.repository.core.support.AbstractRepositoryMetadata.isReactiveRepository(AbstractRepositoryMetadata.java:135) ~[spring-data-commons-3.5.1.jar:3.5.1]
+	at org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport.useRepositoryConfiguration(RepositoryConfigurationExtensionSupport.java:344) ~[spring-data-commons-3.5.1.jar:3.5.1]
+	at org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport.getRepositoryConfigurations(RepositoryConfigurationExtensionSupport.java:98) ~[spring-data-commons-3.5.1.jar:3.5.1]
+	at org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:170) ~[spring-data-commons-3.5.1.jar:3.5.1]
+	at org.springframework.boot.autoconfigure.data.AbstractRepositoryConfigurationSourceSupport.registerBeanDefinitions(AbstractRepositoryConfigurationSourceSupport.java:62) ~[spring-boot-autoconfigure-3.5.3.jar:3.5.3]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:398) ~[spring-context-6.2.8.jar:6.2.8]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[na:na]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:397) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:151) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:123) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:430) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609) ~[spring-context-6.2.8.jar:6.2.8]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.3.jar:3.5.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.3.jar:3.5.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.3.jar:3.5.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.3.jar:3.5.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.3.jar:3.5.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.3.jar:3.5.3]
+	at com.placely.auth.AuthApplicationKt.main(AuthApplication.kt:17) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.5.3.jar:3.5.3]
+Caused by: java.lang.ClassNotFoundException: com.placely.auth.dto.AuthUserDTO
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[na:na]
+	at java.base/java.lang.Class.forName0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:467) ~[na:na]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121) ~[spring-boot-devtools-3.5.3.jar:3.5.3]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[na:na]
+	... 33 common frames omitted
+2025-07-09 10:22:06 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Starting AuthApplicationKt using Java 17.0.11 with PID 24532 (D:\github\Placely\Placely\back-end\auth\build\classes\kotlin\main started by jun_kyung in D:\github\Placely\Placely\back-end)
+2025-07-09 10:22:06 [restartedMain] DEBUG com.placely.auth.AuthApplicationKt - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-09 10:22:06 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - The following 2 profiles are active: "common", "env"
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 2 JPA repository interfaces.
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.TokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.placely.auth.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-07-09 10:22:08 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-09 10:22:08 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-09 10:22:08 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/auth] - Initializing Spring embedded WebApplicationContext
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2200 ms
+2025-07-09 10:22:08 [restartedMain] DEBUG c.p.a.filter.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-07-09 10:22:08 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-09 10:22:08 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-09 10:22:08 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-09 10:22:08 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2025-07-09 10:22:09 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection oracle.jdbc.driver.T4CConnection@47db2a69
+2025-07-09 10:22:09 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2025-07-09 10:22:09 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-09 10:22:09 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 19.28
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-09 10:22:09 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-09 10:22:09 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-09 10:22:10 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2025-07-09 10:22:10 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 6dd0d77c-78fe-4477-85c5-597d391ecd78
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-07-09 10:22:10 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-07-09 10:22:10 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JWTAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-07-09 10:22:10 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-07-09 10:22:10 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/auth'
+2025-07-09 10:22:11 [restartedMain] INFO  com.placely.auth.AuthApplicationKt - Started AuthApplicationKt in 4.638 seconds (process running for 2387.322)
+2025-07-09 10:22:11 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-07-09 10:22:19 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-09 10:22:19 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-07-09 10:22:19 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-09 10:22:19 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2025-07-09 10:22:20 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.

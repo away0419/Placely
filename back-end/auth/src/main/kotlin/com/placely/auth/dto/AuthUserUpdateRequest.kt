@@ -2,6 +2,9 @@ package com.placely.auth.dto
 
 import java.time.LocalDateTime
 
+/**
+ * 유저 업데이트시 요청 값
+ */
 data class AuthUserUpdateRequest(
     var email: String, // 이메일 주소
     var phone: String?, // 연락처

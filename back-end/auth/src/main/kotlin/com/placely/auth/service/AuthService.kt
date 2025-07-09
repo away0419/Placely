@@ -6,6 +6,7 @@ import com.placely.auth.dto.UserInfo
 import com.placely.auth.repository.TokenRepository
 import com.placely.auth.repository.UserRepository
 import com.placely.common.redis.RedisUtil
+import com.placely.common.security.crypto.CryptoUtil
 import com.placely.common.security.jwt.JwtType
 import com.placely.common.security.jwt.JwtUtil
 import com.placely.common.security.jwt.JwtInfo
@@ -30,12 +31,16 @@ class AuthService(
     private val jwtUtil: JwtUtil,
     private val redisUtil: RedisUtil,
     private val tokenService: TokenService,
+    private val cryptoUtil: CryptoUtil,
 ) {
 
     /**
      * 로그인 처리
      */
     fun login(request: LoginRequest): LoginResponse {
+
+        val hashing = cryptoUtil.hashing(request.password)
+        log.debug { "hashing: $hashing" }
 
         // 1. 사용자 조회 (사용자명 또는 이메일로)
         val user = userRepository.findByUsernameOrEmailForLogin(request.username)

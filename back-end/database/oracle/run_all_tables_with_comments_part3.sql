@@ -270,6 +270,14 @@ CREATE INDEX IDX_AI_CACHE_KEY ON AI_RECOMMENDATION_CACHE(CACHE_KEY);
 -- 기본 데이터 삽입
 -- ============================================================================
 
+-- Auth 유저 기본 데이터
+INSERT INTO AUTH_USERS
+(USER_ID, USERNAME, EMAIL,
+ PASSWORD_HASH, PHONE, FULL_NAME,
+ CREATED_BY, CREATED_AT)
+values (1, 'admin', 'admin@admin.com', 'hashing', '010-3155-0419','홍길동', 1 ,SYSDATE);
+
+
 -- Auth 서비스 기본 데이터
 INSERT INTO AUTH_ROLES (ROLE_ID, ROLE_NAME, DESCRIPTION) VALUES (SEQ_AUTH_ROLES.NEXTVAL, 'ADMIN', '시스템 관리자');
 INSERT INTO AUTH_ROLES (ROLE_ID, ROLE_NAME, DESCRIPTION) VALUES (SEQ_AUTH_ROLES.NEXTVAL, 'OWNER', '매장 점주');

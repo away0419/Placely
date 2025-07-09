@@ -16,7 +16,10 @@ dependencies {
 	
 	// Redis (토큰 관리용)
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-	
+
+	// Google Simple JSON
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
 	// API 문서화 - springdoc-openapi
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 	

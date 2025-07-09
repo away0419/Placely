@@ -28,7 +28,7 @@ class JWTAuthenticationFilter (
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        log.info("===========JWTAuthorizationFilter============")
+        log.info("===========JWTAuthenticationFilter============")
 
         try {
             val header = request.getHeader(JwtConstants.AUTHORIZATION_HEADER) // JWT 헤더 추출

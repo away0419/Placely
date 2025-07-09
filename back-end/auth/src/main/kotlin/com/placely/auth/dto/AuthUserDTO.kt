@@ -2,6 +2,9 @@ package com.placely.auth.dto
 
 import java.time.LocalDateTime
 
+/**
+ * 유저 DTO
+ */
 data class AuthUserDTO(
     var userId: Long? = null, // 사용자 ID (Primary Key)
     var username: String? = null, // 사용자명 (로그인용)
