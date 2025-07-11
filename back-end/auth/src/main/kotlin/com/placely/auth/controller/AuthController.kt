@@ -6,12 +6,15 @@ import com.placely.auth.service.AuthService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
+import mu.KotlinLogging
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RestController
+
+private val log = KotlinLogging.logger {}
 
 /**
  * 인증 관련 API 컨트롤러
@@ -28,12 +31,15 @@ class AuthController(
     )
     @PostMapping("/login")
     fun login(@Valid @RequestBody request: LoginRequest): ResponseEntity<LoginResponse> {
+        log.info { "로그인 요청 수신 - 사용자: ${request.username}" }
         return try {
             val response = authService.login(request)
             ResponseEntity.ok(response)
         } catch (e: IllegalArgumentException) {
+            log.warn { "로그인 실패: ${e.message}, 사용자: ${request.username}" }
             ResponseEntity.badRequest().build()
         } catch (e: Exception) {
+            log.error(e) { "로그인 처리 중 서버 오류 발생, 사용자: ${request.username}" }
             ResponseEntity.internalServerError().build()
         }
     }

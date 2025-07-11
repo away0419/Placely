@@ -12,7 +12,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
-import java.util.*
 
 private val log = KotlinLogging.logger {}
 
@@ -20,7 +19,7 @@ private val log = KotlinLogging.logger {}
  *  JWT 인증 필터
  */
 @Component
-class JWTAuthenticationFilter (
+class JWTAuthenticationFilter(
     private val jwtUtil: JwtUtil
 ) : OncePerRequestFilter() {
     override fun doFilterInternal(
@@ -40,18 +39,21 @@ class JWTAuthenticationFilter (
             }
 
             val token = jwtUtil.getTokenFromHeader(header)
-            val userId = jwtUtil.getUserIdFromToken(header)
-            val userRole = jwtUtil.getUserRoleFromToken(token)
+            log.debug { "token: $token" }
+            val userId = jwtUtil.getUserIdFromToken(token)
+            log.debug { "userId: $userId" }
+            val userRoles = jwtUtil.getUserRoleFromToken(token)
+            log.debug { "userRoles: $userRoles" }
+            val authorities = userRoles.map { SimpleGrantedAuthority(it) }
             val authentication = UsernamePasswordAuthenticationToken(   // 인증 완료 된 객체 생성
-                userId, null, Collections.singleton(
-                    SimpleGrantedAuthority(userRole)
-                )
+                userId, null, authorities
             )
 
             SecurityContextHolder.getContext().authentication = authentication // 인증 완료 된 객체 저장
+            log.info { "인증 객체 저장 완료" }
 
-            log.debug { "[JWT] subject: $userId, role: $userRole" }
         } catch (e: SecurityCustomException) { // 만약 에러 발생한 경우 request에 담아 넘김. 이후 AuthenticationEntryPoint에서 확인함.
+            log.info { "" }
             request.setAttribute("securityCustomException", e)
         }
 

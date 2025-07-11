@@ -67,7 +67,7 @@ class JwtUtil(
      */
     fun getUserIdFromToken(token: String): Long {
         val claims = getClaimsFromToken(token)
-        return claims.subject as Long
+        return claims.subject.toLong()
     }
 
     /**
@@ -75,9 +75,9 @@ class JwtUtil(
      * @param token String
      * @return String?
      */
-    fun getUserRoleFromToken(token: String): String? {
+    fun getUserRoleFromToken(token: String): List<String> {
         val claims = getClaimsFromToken(token)
-        return claims["role"] as? String
+        return claims["roles"] as? List<String> ?: emptyList()
     }
 
     /**
@@ -85,9 +85,9 @@ class JwtUtil(
      * @param token String
      * @return String?
      */
-    fun getTokenType(token: String): String? {
+    fun getTokenType(token: String): String {
         val claims = getClaimsFromToken(token)
-        return claims["type"] as? String
+        return claims["type"] as? String ?: ""
     }
 
     // =========================== token 추출 관련 end ===========================
@@ -142,15 +142,17 @@ class JwtUtil(
     // =========================== token 생성 관련 start ===========================
 
     /**
-     * Access 토큰 생성
+     * Access 토큰 생성 (role 포함)
      * @param userId String 사용자 ID
+     * @param roleList List<String> 사용자 역할
      * @param nowDate Date 현재 시간 (밀리초)
      * @return String JWT 토큰
      */
-    fun generateAccessToken(userId: String, nowDate: Date): String {
+    fun generateAccessToken(userId: String, roleList: List<String>, nowDate: Date): String {
         val claims = mapOf(
             "type" to JwtType.ACCESS.name,
-            "iss" to jwtProperties.issuer
+            "iss" to jwtProperties.issuer,
+            "roles" to roleList
         )
 
         return generateToken(userId, claims, nowDate, jwtProperties.accessTokenExpiration)

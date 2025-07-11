@@ -6,6 +6,7 @@ import com.placely.auth.service.UserService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -21,7 +22,11 @@ class UserController(
     )
     @PutMapping("/user")
     fun updateUserInfo(@RequestBody request: AuthUserUpdateRequest): ResponseEntity<Int> {
+        // SecurityContext에서 인증된 사용자 ID 가져오기
+        val authentication = SecurityContextHolder.getContext().authentication
+        val userId = authentication.principal as Long    // JWTAuthenticationFilter에서 설정한 userId
         val authUserDTO = AuthUserDTO(
+            userId = userId,
             email = request.email,
             phone = request.phone,
             fullName = request.fullName,

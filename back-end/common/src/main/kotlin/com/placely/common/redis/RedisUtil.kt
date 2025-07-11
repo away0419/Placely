@@ -30,10 +30,13 @@ class RedisUtil(
      * @param expireAt LocalDateTime    만료 시간
      */
     fun save(key: String, value: Any, expireAt: LocalDateTime) {
-        val ttl = Duration.between(LocalDateTime.now(), expireAt)
+        val now = LocalDateTime.now()
+        val ttl = Duration.between(now, expireAt)
+
         require(!ttl.isNegative && !ttl.isZero) {
-            "만료 시간은 현재보다 이후여야 합니다."
+            "만료 시간은 현재보다 이후여야 합니다. 현재: $now, 만료: $expireAt, TTL: ${ttl.seconds}초"
         }
+        
         redisTemplate.opsForValue().set(key, value, ttl)
     }
 

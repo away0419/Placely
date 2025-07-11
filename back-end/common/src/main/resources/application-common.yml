@@ -7,7 +7,7 @@ placely:
 
 # JWT 토큰 설정 (개발용)
 jwt:
-  secret: placely-jwt-secret-key-for-development-2025-change-in-production
+  secret: placely-jwt-secret-key-for-development-2025-change-in-production-length-64-over-please
   access-token-expiration: 1800000 # 30분 (밀리초)
   refresh-token-expiration: 604800000 # 7일 (밀리초)
   issuer: placely-auth-service

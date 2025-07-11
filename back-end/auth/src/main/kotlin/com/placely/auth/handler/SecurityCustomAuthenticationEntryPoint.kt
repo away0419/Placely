@@ -49,6 +49,7 @@ class SecurityCustomAuthenticationEntryPoint(
             return
         }
 
+        log.debug { "securityCustomException: ${securityCustomException.message}" }
         handlerExceptionResolver.resolveException(request, response, null, authException)
     }
 }

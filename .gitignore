@@ -1,1 +1,2 @@
 back-end/auth/src/main/resources/application-env.yml
+logs/auth-service.log
