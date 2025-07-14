@@ -1,5 +1,7 @@
 package com.placely.auth.dto
 
+import com.placely.auth.entity.Gender
+import com.placely.auth.entity.UserStatus
 import java.time.LocalDateTime
 
 /**
@@ -13,8 +15,8 @@ data class AuthUserDTO(
     var phone: String? = null, // 연락처
     var fullName: String? = null, // 실명
     var birthDate: LocalDateTime? = null, // 생년월일
-    var gender: String? = null, // 성별 (M:남성, F:여성)
-    var status: String? = null, // 계정 상태 (ACTIVE:활성, INACTIVE:비활성, SUSPENDED:정지)
+    var gender: Gender? = null, // 성별 (M:남성, F:여성)
+    var status: UserStatus? = null, // 계정 상태 (ACTIVE:활성, INACTIVE:비활성, SUSPENDED:정지)
     var lastLoginAt: LocalDateTime? = null, // 최종 로그인 시간
     var createdAt: LocalDateTime? = null, // 생성 시간
     var createdBy: Long? = null, // 생성자 ID (Foreign Key: AUTH_USERS.USER_ID)

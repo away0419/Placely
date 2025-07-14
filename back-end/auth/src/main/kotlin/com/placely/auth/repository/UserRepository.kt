@@ -14,7 +14,7 @@ import java.util.*
  * 사용자 Repository
  */
 @Repository
-interface UserRepository : JpaRepository<UserEntity, Long> {
+interface UserRepository : JpaRepository<UserEntity, Long>, UserRepositoryCustom {
 
     /**
      * 사용자명으로 사용자 조회 (삭제되지 않은 사용자만)
@@ -54,23 +54,4 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
         @Param("userId") userId: Long,
         @Param("loginTime") loginTime: LocalDateTime
     ): Int
-
-    /**
-     * 유저 정보 변경
-     */
-    @Modifying
-    @Query(
-        """
-        UPDATE UserEntity u 
-        SET u.email = :email, u.phone = :phone, 
-            u.fullName = :pullName, u.birthDate = :birthDate, 
-            u.gender = :gender, u.updatedAt = :updatedAt, 
-            u.updatedBy = :updateBy 
-        WHERE u.userId = :userId
-    """
-    )
-    fun updateUserInfo(
-        @Param("authUserDTO") authUserDTO: AuthUserDTO
-    ): Int
-
-} 
+}

@@ -6,7 +6,9 @@ import com.placely.auth.entity.UserEntity
 import com.placely.auth.entity.UserStatus
 import com.placely.auth.repository.TokenRepository
 import com.placely.auth.repository.UserRepository
+import com.placely.auth.repository.UserRoleRepository
 import com.placely.common.redis.RedisUtil
+import com.placely.common.security.crypto.CryptoUtil
 import com.placely.common.security.jwt.JwtUtil
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
@@ -29,13 +31,17 @@ class AuthServiceTest : DescribeSpec({
     val jwtUtil = mockk<JwtUtil>()
     val redisUtil = mockk<RedisUtil>()
     val tokenService = mockk<TokenService>()
+    val cryptoUtil = mockk<CryptoUtil>()
+    val userRoleRepository = mockk<UserRoleRepository>()
 
     val authService = AuthService(
         userRepository = userRepository,
+        userRoleRepository = userRoleRepository,
         tokenRepository = tokenRepository,
         jwtUtil = jwtUtil,
         redisUtil = redisUtil,
         tokenService = tokenService,
+        cryptoUtil = cryptoUtil,
     )
 
     afterEach {
@@ -73,7 +79,7 @@ class AuthServiceTest : DescribeSpec({
                     testUser
                 )
                 every { mockTokenEntity.expiresAt } returns mockExpiresAt
-                every { jwtUtil.generateAccessToken(testUser.userId.toString(), any()) } returns mockAccessToken
+                every { jwtUtil.generateAccessToken(testUser.userId.toString(), any(), any()) } returns mockAccessToken
                 every { jwtUtil.generateRefreshToken(testUser.userId.toString(), any()) } returns mockRefreshToken
                 every { jwtUtil.getAccessTokenExpirationSeconds() } returns mockExpirationSeconds
                 every { tokenService.saveTokenToDatabase(any(), any(), any(), any()) } returns mockTokenEntity
@@ -157,7 +163,7 @@ class AuthServiceTest : DescribeSpec({
                 every { userRepository.findByUsernameOrEmailForLogin(loginRequest.username) } returns Optional.of(
                     testUser
                 )
-                every { jwtUtil.generateAccessToken(testUser.userId.toString(), any()) } returns mockAccessToken
+                every { jwtUtil.generateAccessToken(testUser.userId.toString(), any(), any()) } returns mockAccessToken
                 every { jwtUtil.generateRefreshToken(testUser.userId.toString(), any()) } returns mockRefreshToken
                 every { jwtUtil.getAccessTokenExpirationSeconds() } returns 3600L
                 every { tokenService.saveTokenToDatabase(any(), any(), any(), any()) } returns mockTokenEntity

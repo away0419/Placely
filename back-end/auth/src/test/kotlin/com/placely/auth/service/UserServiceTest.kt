@@ -1,6 +1,7 @@
 package com.placely.auth.service
 
 import com.placely.auth.dto.AuthUserDTO
+import com.placely.auth.entity.Gender
 import com.placely.auth.repository.UserRepository
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
@@ -28,7 +29,7 @@ class UserServiceTest : FunSpec({
                 phone = "010-1234-5678",
                 fullName = "테스트 사용자",
                 birthDate = LocalDateTime.of(1990, 1, 1, 0, 0),
-                gender = "M",
+                gender = Gender.M,
                 updatedAt = LocalDateTime.now(),
                 updatedBy = 1L
             )

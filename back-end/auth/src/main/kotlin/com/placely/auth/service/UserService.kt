@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(
     private val userRepository: UserRepository
 ) {
-    fun updateUserInfo(authUserDTO: AuthUserDTO): Int {
+    fun updateUserInfo(authUserDTO: AuthUserDTO): Long {
         val result = userRepository.updateUserInfo(authUserDTO)
 
         if (result > 0) {
