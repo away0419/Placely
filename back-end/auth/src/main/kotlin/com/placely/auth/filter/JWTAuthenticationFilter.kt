@@ -10,6 +10,7 @@ import mu.KotlinLogging
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
@@ -39,15 +40,20 @@ class JWTAuthenticationFilter(
             }
 
             val token = jwtUtil.getTokenFromHeader(header)
-            log.debug { "token: $token" }
             val userId = jwtUtil.getUserIdFromToken(token)
-            log.debug { "userId: $userId" }
             val userRoles = jwtUtil.getUserRoleFromToken(token)
-            log.debug { "userRoles: $userRoles" }
             val authorities = userRoles.map { SimpleGrantedAuthority(it) }
+            val userDetails = User.builder()
+                .username(userId.toString()) // userId를 username으로 설정
+                .password("") // JWT 인증에서는 비밀번호가 필요없으므로 빈 문자열
+                .authorities(authorities)
+                .build() // UserDetails 객체 생성 (username에 userId를 문자열로 저장)
+
             val authentication = UsernamePasswordAuthenticationToken(   // 인증 완료 된 객체 생성
-                userId, null, authorities
+                userDetails, null, authorities
             )
+
+
 
             SecurityContextHolder.getContext().authentication = authentication // 인증 완료 된 객체 저장
             log.info { "인증 객체 저장 완료" }

@@ -44,8 +44,9 @@ class AuthServiceTest : DescribeSpec({
         cryptoUtil = cryptoUtil,
     )
 
+    // 각 테스트 실행 후 모든 mock 객체의 상태를 초기화
     afterEach {
-        clearAllMocks()
+        clearAllMocks() // mock 내부 상태 초기화용이지, 변수나 인스턴스를 삭제하지는 않음
     }
 
     describe("로그인 기능 테스트") {

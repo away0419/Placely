@@ -17,6 +17,11 @@ import java.util.*
 interface UserRepository : JpaRepository<UserEntity, Long>, UserRepositoryCustom {
 
     /**
+     * 사용자 조회 (삭제되지 않은 사용자만)
+     */
+    fun findByUserIdAndIsDeleted(userId: Long, isDeleted: String = "N"): Optional<UserEntity>
+
+    /**
      * 사용자명으로 사용자 조회 (삭제되지 않은 사용자만)
      */
     fun findByUsernameAndIsDeleted(username: String, isDeleted: String = "N"): Optional<UserEntity>

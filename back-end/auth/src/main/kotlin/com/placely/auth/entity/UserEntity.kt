@@ -16,33 +16,33 @@ data class UserEntity(
     val userId: Long = 0,
 
     @Column(name = "USERNAME", unique = true, nullable = false, length = 50)
-    val username: String = "",
+    var username: String = "",
 
     @Column(name = "EMAIL", unique = true, nullable = false, length = 100)
-    val email: String = "",
+    var email: String = "",
 
     @Column(name = "PASSWORD_HASH", nullable = false, length = 255)
-    val passwordHash: String = "",
+    var passwordHash: String = "",
 
     @Column(name = "PHONE", length = 20)
-    val phone: String? = null,
+    var phone: String? = null,
 
     @Column(name = "FULL_NAME", nullable = false, length = 100)
-    val fullName: String = "",
+    var fullName: String = "",
 
     @Column(name = "BIRTH_DATE")
-    val birthDate: LocalDateTime? = null,
+    var birthDate: LocalDateTime? = null,
 
     @Column(name = "GENDER", length = 1)
     @Enumerated(EnumType.STRING)
-    val gender: Gender? = null,
+    var gender: Gender? = null,
 
     @Column(name = "STATUS", length = 20)
     @Enumerated(EnumType.STRING)
-    val status: UserStatus = UserStatus.ACTIVE,
+    var status: UserStatus = UserStatus.ACTIVE,
 
     @Column(name = "LAST_LOGIN_AT")
-    val lastLoginAt: LocalDateTime? = null,
+    var lastLoginAt: LocalDateTime? = null,
 
     @Column(name = "CREATED_AT")
     val createdAt: LocalDateTime = LocalDateTime.now(),
@@ -51,19 +51,19 @@ data class UserEntity(
     val createdBy: Long? = null,
 
     @Column(name = "UPDATED_AT")
-    val updatedAt: LocalDateTime = LocalDateTime.now(),
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
 
     @Column(name = "UPDATED_BY")
-    val updatedBy: Long? = null,
+    var updatedBy: Long? = null,
 
     @Column(name = "IS_DELETED", length = 1)
-    val isDeleted: String = "N",
+    var isDeleted: String = "N",
 
     @Column(name = "DELETED_AT")
-    val deletedAt: LocalDateTime? = null,
+    var deletedAt: LocalDateTime? = null,
 
     @Column(name = "DELETED_BY")
-    val deletedBy: Long? = null
+    var deletedBy: Long? = null
 ) {
     // JPA를 위한 기본 생성자
     constructor() : this(
