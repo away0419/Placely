@@ -6,17 +6,71 @@ import ProductManagement from "../pages/ProductManagement/ProductManagement";
 import OptionManagement from "../pages/OptionManagement/OptionManagement";
 import OrderHistory from "../pages/OrderHistory/OrderHistory";
 import StaffKiosk from "../pages/StaffKiosk/StaffKiosk";
+import Login from "../pages/Auth/Login";
+import UserProfile from "../pages/UserProfile/UserProfile";
+import { ProtectedRoute } from "../common/context/AuthContext";
 
 // 라우팅 구조 정의 (한글 주석)
 const Router = () => (
   <Routes>
     <Route path="/" element={<MainPage />} />
-    <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="/store" element={<StoreManagement />} />
-    <Route path="/product" element={<ProductManagement />} />
-    <Route path="/option" element={<OptionManagement />} />
-    <Route path="/order" element={<OrderHistory />} />
-    <Route path="/kiosk" element={<StaffKiosk />} />
+    <Route path="/login" element={<Login />} />
+    <Route
+      path="/profile"
+      element={
+        <ProtectedRoute>
+          <UserProfile />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/dashboard"
+      element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/store"
+      element={
+        <ProtectedRoute>
+          <StoreManagement />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/product"
+      element={
+        <ProtectedRoute>
+          <ProductManagement />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/option"
+      element={
+        <ProtectedRoute>
+          <OptionManagement />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/order"
+      element={
+        <ProtectedRoute>
+          <OrderHistory />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/kiosk"
+      element={
+        <ProtectedRoute>
+          <StaffKiosk />
+        </ProtectedRoute>
+      }
+    />
   </Routes>
 );
 

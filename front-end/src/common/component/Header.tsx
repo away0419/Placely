@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 // 서비스 메뉴 목록 정의
 const serviceMenus = [
@@ -16,11 +17,22 @@ const serviceMenus = [
 const Header: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, user, logout } = useAuth();
 
   // 메뉴 클릭 시 이동
   const handleMenuClick = (path: string) => {
     navigate(path);
     setDrawerOpen(false);
+  };
+
+  // 로그아웃 처리
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("로그아웃 중 오류:", error);
+    }
   };
 
   return (
@@ -44,14 +56,64 @@ const Header: React.FC = () => {
           </button>
         ))}
       </nav>
-      {/* 태블릿 이하: 햄버거 버튼 */}
-      <button
-        className={styles.mainHeaderIconBtn}
-        aria-label="메뉴 열기"
-        onClick={() => setDrawerOpen(true)}
-      >
-        <span className="material-icons">menu</span>
-      </button>
+      {/* 사용자 정보 영역 */}
+      <div className="flex items-center space-x-4">
+        {isAuthenticated ? (
+          <>
+            {/* 데스크톱: 사용자 정보와 버튼들 */}
+            <div className="hidden md:flex items-center space-x-3">
+              <span className="text-sm text-gray-700">
+                안녕하세요,{" "}
+                <span className="font-medium">
+                  {user?.fullName || user?.username}
+                </span>
+                님
+              </span>
+              <button
+                onClick={() => navigate("/profile")}
+                className="px-3 py-1.5 text-sm text-green-600 hover:text-green-700 hover:bg-green-50 rounded-md transition-colors"
+              >
+                내 정보
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-1.5 text-sm text-gray-600 hover:text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+              >
+                로그아웃
+              </button>
+            </div>
+            {/* 태블릿 이하: 햄버거 버튼 */}
+            <button
+              className={styles.mainHeaderIconBtn}
+              aria-label="메뉴 열기"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <span className="material-icons">menu</span>
+            </button>
+          </>
+        ) : (
+          <>
+            {/* 비로그인 상태: 로그인 버튼 */}
+            <div className="hidden md:flex items-center space-x-3">
+              <button
+                onClick={() => navigate("/login")}
+                className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition-colors"
+                style={{ backgroundColor: "var(--color-primary)" }}
+              >
+                로그인
+              </button>
+            </div>
+            {/* 태블릿 이하: 햄버거 버튼 */}
+            <button
+              className={styles.mainHeaderIconBtn}
+              aria-label="메뉴 열기"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <span className="material-icons">menu</span>
+            </button>
+          </>
+        )}
+      </div>
       {/* 오른쪽 드로어 메뉴 */}
       {drawerOpen && (
         <div
@@ -65,6 +127,18 @@ const Header: React.FC = () => {
             >
               <span className="material-icons">close</span>
             </button>
+
+            {/* 사용자 정보 (모바일) */}
+            {isAuthenticated && user && (
+              <div className="px-4 py-3 border-b border-gray-200">
+                <p className="text-sm text-gray-600">안녕하세요</p>
+                <p className="font-medium text-gray-900">
+                  {user.fullName || user.username}님
+                </p>
+              </div>
+            )}
+
+            {/* 서비스 메뉴 */}
             {serviceMenus.map((menu) => (
               <button
                 key={menu.key}
@@ -74,6 +148,31 @@ const Header: React.FC = () => {
                 {menu.label}
               </button>
             ))}
+
+            {/* 인증 관련 메뉴 */}
+            {isAuthenticated ? (
+              <>
+                <button
+                  className={styles.drawerMenuBtn}
+                  onClick={() => handleMenuClick("/profile")}
+                >
+                  내 정보 관리
+                </button>
+                <button
+                  className={`${styles.drawerMenuBtn} text-red-600`}
+                  onClick={handleLogout}
+                >
+                  로그아웃
+                </button>
+              </>
+            ) : (
+              <button
+                className={styles.drawerMenuBtn}
+                onClick={() => handleMenuClick("/login")}
+              >
+                로그인
+              </button>
+            )}
           </nav>
         </div>
       )}
