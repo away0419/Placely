@@ -1,14 +1,12 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { useCallback, type ReactNode } from "react";
-import { authAPI } from "../util/authAPI";
-
-// 사용자 정보 타입 정의
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  fullName: string;
-}
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import type { ReactNode } from "react";
+import { authAPI, type User } from "../util/authAPI";
 
 // AuthContext 타입 정의
 interface AuthContextType {
@@ -17,6 +15,7 @@ interface AuthContextType {
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   loading: boolean;
+  refreshUser: () => Promise<void>;
 }
 
 // AuthContext 생성
@@ -34,21 +33,39 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   // 초기 인증 상태 확인
   useEffect(() => {
-    const checkAuthStatus = () => {
+    const checkAuthStatus = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const userData = localStorage.getItem("user");
+        // 토큰 존재 여부 확인
+        if (!authAPI.isAuthenticated()) {
+          setLoading(false);
+          return;
+        }
 
-        if (token && userData) {
-          const parsedUser = JSON.parse(userData);
-          setUser(parsedUser);
+        // 로컬 스토리지에서 사용자 정보 가져오기
+        const savedUser = authAPI.getCurrentUser();
+        if (savedUser) {
+          setUser(savedUser);
           setIsAuthenticated(true);
+        }
+
+        // 서버와 토큰 유효성 검증 (선택적)
+        try {
+          await authAPI.validateToken();
+          // 토큰이 유효하면 최신 사용자 정보 가져오기
+          const latestUser = await authAPI.refreshUserInfo();
+          setUser(latestUser);
+          setIsAuthenticated(true);
+        } catch (error) {
+          // 토큰이 유효하지 않으면 로그아웃 처리
+          console.warn("토큰 검증 실패, 로그아웃 처리:", error);
+          setUser(null);
+          setIsAuthenticated(false);
+          // 로컬 데이터 정리는 validateToken에서 자동 처리됨
         }
       } catch (error) {
         console.error("인증 상태 확인 중 오류:", error);
-        // 손상된 데이터 정리
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        setUser(null);
+        setIsAuthenticated(false);
       } finally {
         setLoading(false);
       }
@@ -63,13 +80,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
         const response = await authAPI.login({ username, password });
 
-        // 토큰과 사용자 정보 저장
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("user", JSON.stringify(response.user));
-
         setUser(response.user);
         setIsAuthenticated(true);
       } catch (error) {
+        console.error("로그인 실패:", error);
         throw error;
       }
     },
@@ -89,12 +103,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
+  // 사용자 정보 새로고침
+  const refreshUser = useCallback(async (): Promise<void> => {
+    try {
+      if (!isAuthenticated) return;
+
+      const latestUser = await authAPI.refreshUserInfo();
+      setUser(latestUser);
+    } catch (error) {
+      console.error("사용자 정보 새로고침 실패:", error);
+      // 인증 오류인 경우 로그아웃 처리
+      if (error instanceof Error && error.message.includes("인증")) {
+        await logout();
+      }
+    }
+  }, [isAuthenticated, logout]);
+
   const value: AuthContextType = {
     isAuthenticated,
     user,
     login,
     logout,
     loading,
+    refreshUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

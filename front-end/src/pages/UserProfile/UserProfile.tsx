@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { userAPI } from "../../common/util/userAPI.js";
 
 interface UserInfo {

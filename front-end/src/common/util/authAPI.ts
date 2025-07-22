@@ -1,10 +1,12 @@
-// 인증 관련 API 호출 함수들
-interface LoginRequest {
+import { authApiClient, apiUtils } from "./apiClient";
+
+// 인증 관련 타입 정의
+export interface LoginRequest {
   username: string;
   password: string;
 }
 
-interface LoginResponse {
+export interface LoginResponse {
   token: string;
   user: {
     id: number;
@@ -14,87 +16,107 @@ interface LoginResponse {
   };
 }
 
-// API 기본 설정
-const API_BASE_URL =
-  import.meta.env.VITE_AUTH_API_URL || "http://localhost:8080";
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  fullName: string;
+}
 
-// HTTP 요청 헬퍼 함수
-const request = async (url: string, options: RequestInit = {}) => {
-  const config: RequestInit = {
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-    ...options,
-  };
+export interface HealthResponse {
+  status: string;
+  redis: string;
+  timestamp: string;
+}
 
-  // 토큰이 있으면 Authorization 헤더 추가
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers = {
-      ...config.headers,
-      Authorization: `Bearer ${token}`,
-    };
-  }
-
-  const response = await fetch(`${API_BASE_URL}${url}`, config);
-
-  // 401 에러시 토큰 삭제 후 로그인 페이지로 리다이렉트
-  if (response.status === 401) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    window.location.href = "/login";
-    throw new Error("인증이 만료되었습니다. 다시 로그인해주세요.");
-  }
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
-};
-
-// 인증 API 객체
+/**
+ * 인증 관련 API 서비스
+ */
 export const authAPI = {
-  // 로그인
+  /**
+   * 로그인
+   */
   login: async (loginData: LoginRequest): Promise<LoginResponse> => {
-    return request("/login", {
-      method: "POST",
-      body: JSON.stringify(loginData),
-    });
-  },
-
-  // 로그아웃
-  logout: async (): Promise<void> => {
     try {
-      await request("/logout", {
-        method: "POST",
-      });
-    } finally {
-      // 서버 요청 성공/실패 관계없이 로컬에서 토큰 삭제
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      const response = await authApiClient.post<LoginResponse>(
+        "/login",
+        loginData
+      );
+
+      // 로그인 성공 시 토큰과 사용자 정보 저장
+      const { token, user } = response.data;
+      apiUtils.saveAuthData(token, user);
+
+      return response.data;
+    } catch (error) {
+      console.error("로그인 실패:", error);
+      throw error;
     }
   },
 
-  // 서비스 상태 확인
-  health: async (): Promise<{
-    status: string;
-    redis: string;
-    timestamp: string;
-  }> => {
-    return request("/health");
+  /**
+   * 로그아웃
+   */
+  logout: async (): Promise<void> => {
+    try {
+      // 서버에 로그아웃 요청 (토큰이 필요한 요청)
+      await authApiClient.post("/logout");
+    } catch (error) {
+      console.error("로그아웃 요청 실패:", error);
+      // 서버 요청이 실패해도 로컬 데이터는 정리
+    } finally {
+      // 로컬 인증 정보 삭제
+      apiUtils.clearAuthData();
+    }
   },
 
-  // 토큰 유효성 검사
+  /**
+   * 서비스 상태 확인 (헬스체크)
+   */
+  health: async (): Promise<HealthResponse> => {
+    const response = await authApiClient.get<HealthResponse>("/health");
+    return response.data;
+  },
+
+  /**
+   * 현재 사용자 정보 가져오기 (로컬 스토리지에서)
+   */
+  getCurrentUser: (): User | null => {
+    return apiUtils.getCurrentUser();
+  },
+
+  /**
+   * 토큰 존재 여부 확인
+   */
   isAuthenticated: (): boolean => {
-    const token = localStorage.getItem("token");
-    return !!token;
+    return apiUtils.hasToken();
   },
 
-  // 현재 사용자 정보 가져오기
-  getCurrentUser: () => {
-    const userString = localStorage.getItem("user");
-    return userString ? JSON.parse(userString) : null;
+  /**
+   * 토큰 유효성 검증 (서버와 통신)
+   */
+  validateToken: async (): Promise<boolean> => {
+    try {
+      await authApiClient.get("/user/me"); // 인증이 필요한 엔드포인트
+      return true;
+    } catch (error) {
+      console.warn("토큰 검증 실패:", error);
+      return false;
+    }
+  },
+
+  /**
+   * 사용자 정보 새로고침 (서버에서 최신 정보 가져오기)
+   */
+  refreshUserInfo: async (): Promise<User> => {
+    const response = await authApiClient.get<User>("/user/me");
+
+    // 새로운 사용자 정보로 로컬 스토리지 업데이트
+    const currentToken = localStorage.getItem("token");
+    if (currentToken) {
+      apiUtils.saveAuthData(currentToken, response.data);
+    }
+
+    return response.data;
   },
 };
