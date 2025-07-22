@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import type { ReactNode } from "react";
+import { useCallback, type ReactNode } from "react";
 import { authAPI } from "../util/authAPI";
 
 // 사용자 정보 타입 정의
@@ -58,23 +58,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   // 로그인 함수
-  const login = async (username: string, password: string): Promise<void> => {
-    try {
-      const response = await authAPI.login({ username, password });
+  const login = useCallback(
+    async (username: string, password: string): Promise<void> => {
+      try {
+        const response = await authAPI.login({ username, password });
 
-      // 토큰과 사용자 정보 저장
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("user", JSON.stringify(response.user));
+        // 토큰과 사용자 정보 저장
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("user", JSON.stringify(response.user));
 
-      setUser(response.user);
-      setIsAuthenticated(true);
-    } catch (error) {
-      throw error;
-    }
-  };
+        setUser(response.user);
+        setIsAuthenticated(true);
+      } catch (error) {
+        throw error;
+      }
+    },
+    []
+  );
 
   // 로그아웃 함수
-  const logout = async (): Promise<void> => {
+  const logout = useCallback(async (): Promise<void> => {
     try {
       await authAPI.logout();
     } catch (error) {
@@ -84,7 +87,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setUser(null);
       setIsAuthenticated(false);
     }
-  };
+  }, []);
 
   const value: AuthContextType = {
     isAuthenticated,

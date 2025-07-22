@@ -52,7 +52,9 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       // Vite 표준: import.meta.env를 통해 브라우저에서 접근할 수 있도록 환경변수 주입
-      "import.meta.env.VITE_API_URL": JSON.stringify(env.VITE_API_URL),
+      "import.meta.env.VITE_AUTH_API_URL": JSON.stringify(
+        env.VITE_AUTH_API_URL
+      ),
       "import.meta.env.VITE_PORT": JSON.stringify(env.VITE_PORT),
       "import.meta.env.VITE_TEST_KEY": JSON.stringify(env.VITE_TEST_KEY),
     },
